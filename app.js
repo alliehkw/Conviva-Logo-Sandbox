@@ -1,65 +1,59 @@
-document.addEventListener("scroll", () => {
+document.addEventListener("DOMContentLoaded", function () {
+  const centeredElement = document.querySelector(".centered-container");
   const rows = document.querySelectorAll(".row");
-  const windowHeight = window.innerHeight;
-  const scrollY = window.scrollY;
 
-  const firstRow = rows[0];
-  const firstRowRect = firstRow.getBoundingClientRect();
-  const firstRowTop = firstRowRect.top + scrollY;
-  const viewportTop = 0; // Top of the viewport
-
-  // Make rows visible as soon as they come into the viewport
-  rows.forEach((row) => {
-    const rect = row.getBoundingClientRect();
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      row.classList.add("show");
-    } else {
-      row.classList.remove("show");
-    }
-  });
-
-  // Set initial top offset for each row once
-  rows.forEach((row) => {
-    if (!row.dataset.initialTop) {
-      row.dataset.initialTop = row.getBoundingClientRect().top + window.scrollY;
-    }
-  });
-
-  // Make all rows sticky when the first row reaches the top of the viewport
-  if (firstRowRect.top <= viewportTop) {
-    rows.forEach((row) => {
-      row.style.position = "sticky";
-      row.style.top = `${parseFloat(row.dataset.initialTop) - firstRowTop}px`;
-    });
+  if (!centeredElement || !rows.length) {
+    console.error("Centered element or rows not found");
+    return;
   }
 
-  // Translate rows horizontally based on scroll position
-  rows.forEach((row) => {
-    const elementTop = parseFloat(row.dataset.initialTop);
-    const translateAmount = Math.min(
-      1,
-      (scrollY - elementTop + windowHeight) / windowHeight
-    );
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5, // Adjust this value to detect when the element is in the center
+  };
 
-    // Apply translation if the row is visible
-    if (row.classList.contains("show")) {
-      if (row.classList.contains("one")) {
-        row.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
-      } else if (row.classList.contains("two")) {
-        row.style.transform = `translateX(${
-          (1 - translateAmount) * 100
-        }%) translateX(55px)`;
-      } else if (row.classList.contains("three")) {
-        row.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
-      } else if (row.classList.contains("four")) {
-        row.style.transform = `translateX(${
-          -(1 - translateAmount) * 100
-        }%) translateX(-55px)`;
-      } else if (row.classList.contains("five")) {
-        row.style.transform = `translateX(${-(1 - translateAmount) * 100}%)`;
+  let rowsVisible = false;
+  let transitioningIn = false;
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (!rowsVisible && !transitioningIn) {
+          transitioningIn = true;
+          rows.forEach((row) => {
+            row.style.transform = `translateX(0)`;
+            row.style.opacity = 1;
+          });
+          setTimeout(() => {
+            transitioningIn = false;
+            rowsVisible = true;
+          }, 500); // Match this duration to your CSS transition duration
+        }
       }
-    } else {
-      row.style.transform = `translateX(0)`; // Reset translation when not visible
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  observer.observe(centeredElement);
+
+  window.addEventListener("scroll", () => {
+    if (rowsVisible && !transitioningIn) {
+      const centeredElementRect = centeredElement.getBoundingClientRect();
+      const bufferHeight = window.innerHeight / 2;
+      const scrollPosition = window.scrollY + bufferHeight;
+
+      // Check if the scroll position has moved past the center element
+      if (
+        scrollPosition > centeredElementRect.bottom ||
+        scrollPosition < centeredElementRect.top
+      ) {
+        rows.forEach((row) => {
+          row.style.transform = `translateX(-100%)`;
+          row.style.opacity = 0;
+        });
+        rowsVisible = false;
+      }
     }
   });
 });

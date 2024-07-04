@@ -1,68 +1,58 @@
-html, body {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    width: 100%;
+    overflow-x: hidden;
 }
 
-body {
-    background-color: #001B2D;
-    color: #F6F9FC;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    box-sizing: border-box;
+h1 {
+    text-align: center;
 }
 
-.buffer {
-    height: 200vh;
+.buffer, .extra-buffer {
+    height: 100vh;
 }
 
 .block-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
-    align-items: center;
-    height: 200vh;
-    justify-content: top;
+    position: relative;
+    height: 300vh; /* Adjust to ensure enough scrolling space */
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+    position: fixed; /* Fixed position relative to viewport */
     width: 100%;
-    justify-content: center;
-}
-
-.row.three {
-    justify-content: space-between;
-}
-
-.row > div {
-    background-color: #145377;
-    filter: drop-shadow(0px 11px 21px rgba(0, 55, 76, 0.68));
-    width: 60px;
-    height: 60px;
-    padding: 20px;
-    transition: transform 0.1s linear; /* Smooth transition */
-}
-
-.hidden {
-    opacity: 0;
-    transition: all 0.1s;
-    filter: blur(5px);
-    transform: translateX(100%); /* Start off-screen to the right */
-}
-
-.hidden.row.four,
-.hidden.row.five {
+    display: flex;
+    justify-content: space-around;
+    opacity: 0; /* Hidden initially */
     transform: translateX(-100%); /* Start off-screen to the left */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 
-.show {
-    opacity: 1;
-    filter: blur(0);
+.row.one { top: 20%; }
+.row.two { top: 40%; }
+.row.three { top: 60%; }
+.row.four { top: 80%; }
+.row.five { top: 100%; }
+
+.row p {
+    margin: 0;
+    padding: 10px;
+    background-color: #ddd;
+    border: 1px solid #aaa;
+    text-align: center;
+}
+
+.centered-container {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.centered {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #aaa;
 }
