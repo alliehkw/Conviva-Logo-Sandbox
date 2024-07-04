@@ -25,7 +25,6 @@ h1 {
     justify-content: space-around;
     opacity: 0; /* Hidden initially */
     transform: translateX(-100%); /* Start off-screen to the left */
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 
 .row.one { top: 20%; }
@@ -43,10 +42,11 @@ h1 {
 }
 
 .centered-container {
-    height: 200vh;
+    height: 300vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
+    background-color: pink;
 }
 
 .centered {
@@ -59,4 +59,6 @@ h1 {
     transform: translateY(-50%);
     text-align: center;
     z-index: 10;
+    height: fit-content;
+    width: fit-content;
 }
