@@ -43,11 +43,10 @@ h1 {
 }
 
 .centered-container {
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    z-index: 10;
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .centered {
@@ -55,4 +54,9 @@ h1 {
     background-color: #f0f0f0;
     padding: 10px;
     border: 1px solid #aaa;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 10;
 }
