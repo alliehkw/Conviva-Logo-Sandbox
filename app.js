@@ -1,70 +1,65 @@
 document.addEventListener("scroll", () => {
-  const hiddenElements = document.querySelectorAll(".hidden");
-  const container = document.querySelector(".block-container");
+  const rows = document.querySelectorAll(".row");
   const windowHeight = window.innerHeight;
   const scrollY = window.scrollY;
 
-  hiddenElements.forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    const topPosition = rect.top + scrollY; // Get the element's top position relative to the document
+  const firstRow = rows[0];
+  const firstRowRect = firstRow.getBoundingClientRect();
+  const firstRowTop = firstRowRect.top + scrollY;
+  const viewportTop = 0; // Top of the viewport
 
-    // Show the element if it's within the viewport
+  // Make rows visible as soon as they come into the viewport
+  rows.forEach((row) => {
+    const rect = row.getBoundingClientRect();
     if (rect.top < windowHeight && rect.bottom > 0) {
-      el.classList.add("show");
+      row.classList.add("show");
     } else {
-      el.classList.remove("show");
-    }
-
-    // Apply translation only if the element has the show class
-    if (el.classList.contains("show")) {
-      const translateAmount = Math.min(
-        1,
-        (scrollY - topPosition + windowHeight) / windowHeight
-      );
-
-      if (el.classList.contains("row") && el.classList.contains("one")) {
-        // Translate from right to center
-        el.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
-      } else if (el.classList.contains("row") && el.classList.contains("two")) {
-        // Translate from right to 55px from center
-        el.style.transform = `translateX(${
-          (1 - translateAmount) * 100
-        }%) translateX(55px)`;
-      } else if (
-        el.classList.contains("row") &&
-        el.classList.contains("three")
-      ) {
-        // Translate from right to center
-        el.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
-      } else if (
-        el.classList.contains("row") &&
-        el.classList.contains("four")
-      ) {
-        // Translate from left to 55px from center
-        el.style.transform = `translateX(${
-          -(1 - translateAmount) * 100
-        }%) translateX(55px)`;
-      } else if (
-        el.classList.contains("row") &&
-        el.classList.contains("five")
-      ) {
-        // Translate from left to center
-        el.style.transform = `translateX(${-(1 - translateAmount) * 100}%)`;
-      }
-      // Add more conditions here for other rows if needed
+      row.classList.remove("show");
     }
   });
 
-  // Check if the block-container's center is in the viewport's center
-  const containerRect = container.getBoundingClientRect();
-  const containerCenter =
-    containerRect.top + scrollY + containerRect.height / 2;
-  const viewportCenter = scrollY + windowHeight / 2;
+  // Set initial top offset for each row once
+  rows.forEach((row) => {
+    if (!row.dataset.initialTop) {
+      row.dataset.initialTop = row.getBoundingClientRect().top + window.scrollY;
+    }
+  });
 
-  // If the container's center is within the viewport's center, make it sticky
-  if (Math.abs(containerCenter - viewportCenter) < 1) {
-    container.classList.add("sticky");
-  } else {
-    container.classList.remove("sticky");
+  // Make all rows sticky when the first row reaches the top of the viewport
+  if (firstRowRect.top <= viewportTop) {
+    rows.forEach((row) => {
+      row.style.position = "sticky";
+      row.style.top = `${parseFloat(row.dataset.initialTop) - firstRowTop}px`;
+    });
   }
+
+  // Translate rows horizontally based on scroll position
+  rows.forEach((row) => {
+    const elementTop = parseFloat(row.dataset.initialTop);
+    const translateAmount = Math.min(
+      1,
+      (scrollY - elementTop + windowHeight) / windowHeight
+    );
+
+    // Apply translation if the row is visible
+    if (row.classList.contains("show")) {
+      if (row.classList.contains("one")) {
+        row.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
+      } else if (row.classList.contains("two")) {
+        row.style.transform = `translateX(${
+          (1 - translateAmount) * 100
+        }%) translateX(55px)`;
+      } else if (row.classList.contains("three")) {
+        row.style.transform = `translateX(${(1 - translateAmount) * 100}%)`;
+      } else if (row.classList.contains("four")) {
+        row.style.transform = `translateX(${
+          -(1 - translateAmount) * 100
+        }%) translateX(-55px)`;
+      } else if (row.classList.contains("five")) {
+        row.style.transform = `translateX(${-(1 - translateAmount) * 100}%)`;
+      }
+    } else {
+      row.style.transform = `translateX(0)`; // Reset translation when not visible
+    }
+  });
 });

@@ -15,24 +15,18 @@ body {
     box-sizing: border-box;
 }
 
+.buffer {
+    height: 200vh;
+}
+
 .block-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 1200px;
-    margin-top: 100vh;
-    margin-bottom: 100vh;
     align-items: center;
-    position: relative;
-    top: 0;
-    transform: translateY(0);
-    transition: position 0.1s, top 0.1s, transform 0.1s;
-}
-
-.block-container.sticky {
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
+    height: 200vh;
+    justify-content: top;
 }
 
 .row {
