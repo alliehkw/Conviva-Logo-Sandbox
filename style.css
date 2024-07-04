@@ -23,6 +23,16 @@ body {
     margin-top: 100vh;
     margin-bottom: 100vh;
     align-items: center;
+    position: relative;
+    top: 0;
+    transform: translateY(0);
+    transition: position 0.1s, top 0.1s, transform 0.1s;
+}
+
+.block-container.sticky {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .row {
@@ -37,49 +47,28 @@ body {
     justify-content: space-between;
 }
 
-
-
 .row > div {
     background-color: #145377;
     filter: drop-shadow(0px 11px 21px rgba(0, 55, 76, 0.68));
     width: 60px;
     height: 60px;
     padding: 20px;
+    transition: transform 0.1s linear; /* Smooth transition */
 }
 
 .hidden {
     opacity: 0;
-    transition: all 2s;
+    transition: all 0.1s;
     filter: blur(5px);
-    /* transform: translateX(-100%); */
-}
-
-.hidden.row.one,
-.hidden.row.two,
-.hidden.row.three {
-    transform: translateX(100%);
+    transform: translateX(100%); /* Start off-screen to the right */
 }
 
 .hidden.row.four,
 .hidden.row.five {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Start off-screen to the left */
 }
 
 .show {
     opacity: 1;
     filter: blur(0);
-}
-
-.show.row.two {
-    transform: translateX(55px); /* Offset to the right */
-}
-
-.show.row.four {
-    transform: translateX(-55px); /* Offset to the left */
-}
-
-.show.row.one,
-.show.row.three,
-.show.row.five {
-    transform: translateX(0); /* Center the rows */
 }
