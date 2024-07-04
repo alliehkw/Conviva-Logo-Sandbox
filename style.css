@@ -18,7 +18,7 @@ h1 {
     align-items: center;
 }
 
-/* TODO: make the transition out wait a bit or something so it doesnt overlap with the text  */
+/* Make sure there's enough height for the rows to start off-screen */
 .block-container {
     position: relative;
 }
