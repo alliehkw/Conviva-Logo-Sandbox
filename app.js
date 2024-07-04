@@ -22,24 +22,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const translateOutStart = rowFiveBottom - viewportHeight / 2;
     const translateDistance = centeredContainerMiddle - centeredContainerTop;
 
-    console.log("Scroll Position:", scrollPosition);
-    console.log("Centered Container Top:", centeredContainerTop);
-    console.log("Centered Container Middle:", centeredContainerMiddle);
-    console.log("Row Five Bottom:", rowFiveBottom);
-    console.log("Translate Out Start:", translateOutStart);
-    console.log("Translate Distance:", translateDistance);
-
     rows.forEach((row, index) => {
       const translateInStart = centeredContainerTop;
       let rowPosition = (scrollPosition - translateInStart) / translateDistance;
+
+      let translateXValue;
+      let translateYValue;
+      let adjustedRowPosition;
+
+      // Determine the direction of translation
+      if (index === 0 || index === 1) {
+        // .row.one and .row.two slide in from the top right
+        translateXValue = (1 - rowPosition) * 100; // Positive value for right to left
+        translateYValue = (1 - rowPosition) * -200; // More aggressive negative value for top to bottom
+      } else {
+        // .row.three, .row.four, and .row.five slide in from the bottom left
+        translateXValue = (1 - rowPosition) * -100; // Negative value for left to right
+        translateYValue = (1 - rowPosition) * 200; // More aggressive positive value for bottom to top
+      }
+
+      // Adjust rowPosition to control opacity transition timing
+      if (rowPosition >= 0.5) {
+        adjustedRowPosition = (rowPosition - 0.5) * 2; // Start opacity transition at 0.5
+      } else {
+        adjustedRowPosition = 0;
+      }
 
       if (
         scrollPosition >= translateInStart &&
         scrollPosition <= centeredContainerMiddle
       ) {
         // Translation in
-        row.style.transform = `translateX(${(1 - rowPosition) * -100}%)`;
-        row.style.opacity = rowPosition;
+        row.style.transform = `translate(${translateXValue}%, ${translateYValue}%)`;
+        row.style.opacity = adjustedRowPosition;
       } else if (
         scrollPosition > centeredContainerMiddle &&
         scrollPosition <= translateOutStart
@@ -47,13 +62,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Translation out
         rowPosition =
           (scrollPosition - centeredContainerMiddle) / translateDistance;
-        row.style.transform = `translateX(${rowPosition * -100}%)`;
+        if (index === 0 || index === 1) {
+          translateXValue = rowPosition * 100; // Positive value for right to left
+          translateYValue = rowPosition * -200; // More aggressive negative value for top to bottom
+        } else {
+          translateXValue = rowPosition * -100; // Negative value for left to right
+          translateYValue = rowPosition * 200; // More aggressive positive value for bottom to top
+        }
+        row.style.transform = `translate(${translateXValue}%, ${translateYValue}%)`;
         row.style.opacity = 1 - rowPosition;
       } else if (scrollPosition < translateInStart) {
-        row.style.transform = `translateX(-100%)`;
+        row.style.transform = `translate(${
+          index === 0 || index === 1 ? "100%, -200%" : "-100%, 200%"
+        })`;
         row.style.opacity = 0;
       } else {
-        row.style.transform = `translateX(-100%)`;
+        row.style.transform = `translate(${
+          index === 0 || index === 1 ? "100%, -200%" : "-100%, 200%"
+        })`;
         row.style.opacity = 0;
       }
 

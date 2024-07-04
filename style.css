@@ -11,14 +11,16 @@ h1 {
     text-align: center;
 }
 
-.buffer, .extra-buffer {
-    height: 100vh;
+.buffer {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* TODO: make the transition out wait a bit or something so it doesnt overlap with the text  */
 .block-container {
     position: relative;
-    height: 300vh; /* Adjust to ensure enough scrolling space */
 }
 
 .row {
