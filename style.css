@@ -1,8 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 24px;
     overflow-x: hidden;
+    background-color: #001B2D;
+    color: #F6F9FC;
 }
 
 h1 {
@@ -13,6 +15,7 @@ h1 {
     height: 100vh;
 }
 
+/* TODO: make the transition out wait a bit or something so it doesnt overlap with the text  */
 .block-container {
     position: relative;
     height: 300vh; /* Adjust to ensure enough scrolling space */
@@ -22,22 +25,32 @@ h1 {
     position: fixed; /* Fixed position relative to viewport */
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
     opacity: 0; /* Hidden initially */
     transform: translateX(-100%); /* Start off-screen to the left */
 }
 
+.row > div {
+    background-color: #145377;
+    filter: drop-shadow(0px 11px 21px rgba(0, 55, 76, 0.68));
+}
+
 .row.one { top: 20%; }
-.row.two { top: 40%; }
-.row.three { top: 60%; }
-.row.four { top: 80%; }
+.row.two { 
+    top: 30%; 
+    margin-left: 60px;
+}
+.row.three { 
+    top: 60%;
+    margin-left: -60px;
+}
+.row.four { top: 70%; }
 .row.five { top: 100%; }
 
 .row p {
-    margin: 0;
+    margin: 10px;
     padding: 10px;
-    background-color: #ddd;
-    border: 1px solid #aaa;
     text-align: center;
 }
 
@@ -46,19 +59,23 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: top;
-    background-color: pink;
 }
 
 .centered {
     display: inline-block;
-    background-color: #f0f0f0;
     padding: 10px;
-    border: 1px solid #aaa;
     position: sticky;
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: fit-content;
+    width: 66%;
+}
+
+.centered > p {
+    background: var(--Gradient-_text, radial-gradient(286.04% 184.95% at 102.28% -9.7%, #9CDC00 0%, #90CB01 23.49%, #EFDC00 64.45%, #3CCBDA 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

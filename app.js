@@ -16,26 +16,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const centeredContainerMiddle =
       centeredContainerTop + centeredContainerRect.height / 2;
 
+    const rowFive = document.querySelector(".row.five");
+    const rowFiveBottom =
+      rowFive.getBoundingClientRect().bottom + window.scrollY;
+    const translateOutStart = rowFiveBottom - viewportHeight / 2;
+    const translateDistance = centeredContainerMiddle - centeredContainerTop;
+
+    console.log("Scroll Position:", scrollPosition);
+    console.log("Centered Container Top:", centeredContainerTop);
+    console.log("Centered Container Middle:", centeredContainerMiddle);
+    console.log("Row Five Bottom:", rowFiveBottom);
+    console.log("Translate Out Start:", translateOutStart);
+    console.log("Translate Distance:", translateDistance);
+
     rows.forEach((row, index) => {
       const translateInStart = centeredContainerTop;
-      const translateOutStart = centeredContainerMiddle;
-      const translateDistance = translateOutStart - translateInStart;
-
       let rowPosition = (scrollPosition - translateInStart) / translateDistance;
 
       if (
         scrollPosition >= translateInStart &&
-        scrollPosition <= translateOutStart
+        scrollPosition <= centeredContainerMiddle
       ) {
         // Translation in
         row.style.transform = `translateX(${(1 - rowPosition) * -100}%)`;
         row.style.opacity = rowPosition;
       } else if (
-        scrollPosition > translateOutStart &&
-        scrollPosition <= translateOutStart + translateDistance
+        scrollPosition > centeredContainerMiddle &&
+        scrollPosition <= translateOutStart
       ) {
         // Translation out
-        rowPosition = (scrollPosition - translateOutStart) / translateDistance;
+        rowPosition =
+          (scrollPosition - centeredContainerMiddle) / translateDistance;
         row.style.transform = `translateX(${rowPosition * -100}%)`;
         row.style.opacity = 1 - rowPosition;
       } else if (scrollPosition < translateInStart) {
