@@ -40,16 +40,21 @@ h1 {
 }
 
 .hexagon {
-    width: auto; /* Width of the hexagon */
+    width: var(--hexagon-width); /* Width of the hexagon */
     height: var(--hexagon-height); /* Use the CSS variable for height */
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 40px;
+    background-image: url('hexagon.svg'); /* Set the SVG as the background image */
+    background-repeat: no-repeat; /* Ensure the background doesn't repeat */
+    background-position: center center; /* Center the background image */
+    background-size: contain; /* Ensure the SVG scales properly */
+    position: relative;
 }
 
-.hexagon.ghost img {
-    opacity: 0; /* This is to keep things centered the way I want */
+.hexagon.ghost  {
+    opacity: 0 !important; /* This is to keep things centered the way I want */
 }
 
 .row.three {
@@ -69,9 +74,21 @@ h1 {
     margin-right: calc(-1/8 * (var(--hexagon-width)));
 }
 
-.hexagon img {
-    width: 100%;
-    height: 100%;
+.img-containing-div {
+    /* background-color: orange; */
+    height: 30%;
+    width: 50%;
+    margin-top: calc(-1 * (var(--hexagon-height)/13));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-containing-div img {
+    max-width: 100%; /* Adjust the width as needed */
+    height: auto;
+    max-height: 100%;
+    z-index: 1; /* Ensure the image is on top of the background */
 }
 
 /* Adjust specific row heights using the variable */
