@@ -48,6 +48,10 @@ h1 {
     margin-left: 40px;
 }
 
+.hexagon.ghost img {
+    opacity: 0; /* This is to keep things centered the way I want */
+}
+
 .row.three {
     top: 50%;
     transform: translateY(-50%); /* Always center vertically */

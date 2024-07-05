@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const rowConfigurations = {
     one: {
-      hexagonStartPositions: [-100, -100, 100],
+      hexagonStartPositions: [-100, -120, -100, 50, 180],
       translateYDirection: -20,
     },
     two: {
-      hexagonStartPositions: [-100, 0, 100],
+      hexagonStartPositions: [-150, 20, 140],
       translateYDirection: -20,
     },
     three: {
@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: 0,
     },
     four: {
-      hexagonStartPositions: [-100, -100, 100],
+      hexagonStartPositions: [-150, 10, 80],
       translateYDirection: 20,
     },
     five: {
-      hexagonStartPositions: [-100, 100, 100],
+      hexagonStartPositions: [-100, -25, 100, 75, 100],
       translateYDirection: 20,
     },
   };
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (centeredContainerMiddle - centeredContainerTop) / 2; // Halve the translate distance
     const stationaryEnd = centeredContainerMiddle + bufferPeriod; // Define the end of the stationary period
 
-    rows.forEach((row, index) => {
+    rows.forEach((row) => {
       const rowClass = row.classList[1]; // Assuming the row class is always the second class
       const config = rowConfigurations[rowClass];
 
