@@ -123,3 +123,26 @@ h1 {
     font-weight: 600;
     line-height: 130%;
 }
+
+.corner {
+    position: fixed;
+    width: calc(var(--hexagon-width) * 2);
+    height: calc(var(--hexagon-height) * 2);
+    opacity: 0; /* Hidden initially */
+    object-fit: contain;
+}
+
+.corner img {
+    height: 100%;
+    width: 100%;
+}
+
+.corner.top-left {
+    top: -15vh;
+    left: -5vw;
+}
+
+.corner.bottom-right {
+    bottom: -18vh;
+    right: -5vw;
+}

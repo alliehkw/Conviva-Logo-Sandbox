@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const centeredContainer = document.querySelector(".centered-container");
   const rows = document.querySelectorAll(".row");
   const centeredText = document.querySelector(".centered");
+  const corners = document.querySelectorAll(".corner");
 
   if (!centeredContainer || !rows.length || !centeredText) {
     console.error("Centered container, centered text, or rows not found");
@@ -13,11 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const rowConfigurations = {
     one: {
-      hexagonStartPositions: [-100, -120, -100, 50, 180],
+      hexagonStartPositions: [-100, -100, 100, 100, 100],
       translateYDirection: -20,
     },
     two: {
-      hexagonStartPositions: [0, -150, 0, 90, 140],
+      hexagonStartPositions: [-100, 0, 100],
       translateYDirection: -20,
     },
     three: {
@@ -25,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: 0,
     },
     four: {
-      hexagonStartPositions: [-150, -80, -20, 40],
+      hexagonStartPositions: [-100, -100, 100],
       translateYDirection: 20,
     },
     five: {
-      hexagonStartPositions: [-100, -25, 100, 75, 100],
+      hexagonStartPositions: [-100, 100, 100],
       translateYDirection: 20,
     },
   };
@@ -132,6 +133,69 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
+  const updateCornerPositions = (
+    scrollPosition,
+    translateDistance,
+    centeredContainerTop,
+    centeredContainerMiddle,
+    stationaryEnd,
+    translateOutStart
+  ) => {
+    const translateInStart = centeredContainerTop;
+    let cornerPosition =
+      (scrollPosition - translateInStart) / translateDistance;
+
+    corners.forEach((corner) => {
+      let translateXValue;
+
+      if (corner.classList.contains("top-left")) {
+        translateXValue = (1 - cornerPosition) * -15; // Slightly off-screen
+        translateXValue = Math.min(0, translateXValue); // Clamp to maximum of 0
+      } else if (corner.classList.contains("bottom-right")) {
+        translateXValue = (1 - cornerPosition) * 15; // Slightly off-screen
+        translateXValue = Math.max(0, translateXValue); // Clamp to minimum of 0
+      }
+
+      if (cornerPosition > 1) cornerPosition = 1;
+
+      if (
+        scrollPosition >= translateInStart &&
+        scrollPosition <= centeredContainerMiddle
+      ) {
+        // Translation in
+        corner.style.transform = `translate(${translateXValue}vw, 0)`;
+        corner.style.opacity = cornerPosition;
+      } else if (
+        scrollPosition > centeredContainerMiddle &&
+        scrollPosition <= stationaryEnd
+      ) {
+        // Stationary period
+        corner.style.transform = `translate(0, 0)`;
+        corner.style.opacity = 1;
+      } else if (
+        scrollPosition > stationaryEnd &&
+        scrollPosition <= translateOutStart
+      ) {
+        // Translation out
+        cornerPosition = (scrollPosition - stationaryEnd) / translateDistance;
+        translateXValue =
+          cornerPosition * (corner.classList.contains("top-left") ? -15 : 15);
+        corner.style.transform = `translate(${translateXValue}vw, 0)`;
+        corner.style.opacity = 1 - cornerPosition;
+      } else if (scrollPosition < translateInStart) {
+        corner.style.transform = `translate(${
+          corner.classList.contains("top-left") ? "-15vw" : "15vw"
+        }, 0)`;
+        corner.style.opacity = 0;
+      } else {
+        corner.style.transform = `translate(${
+          corner.classList.contains("top-left") ? "-15vw" : "15vw"
+        }, 0)`;
+        corner.style.opacity = 0;
+      }
+    });
+  };
+
   const updateRowPositions = () => {
     const scrollPosition = window.scrollY;
     const centeredContainerRect = centeredContainer.getBoundingClientRect();
@@ -165,6 +229,15 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }
     });
+
+    updateCornerPositions(
+      scrollPosition,
+      translateDistance,
+      centeredContainerTop,
+      centeredContainerMiddle,
+      stationaryEnd,
+      translateOutStart
+    );
 
     // Ensure centered text remains sticky long enough
     if (scrollPosition <= translateOutStart) {
