@@ -11,6 +11,225 @@ document.addEventListener("DOMContentLoaded", function () {
   const viewportHeight = window.innerHeight;
   const bufferPeriod = 0.25 * viewportHeight; // Define a 25vh buffer period
 
+  const updateRowOnePosition = (
+    row,
+    scrollPosition,
+    translateDistance,
+    centeredContainerTop,
+    centeredContainerMiddle,
+    stationaryEnd,
+    translateOutStart
+  ) => {
+    const translateInStart = centeredContainerTop;
+    let rowPosition = (scrollPosition - translateInStart) / translateDistance;
+    let translateYValue;
+
+    if (rowPosition > 1) rowPosition = 1;
+
+    if (
+      scrollPosition >= translateInStart &&
+      scrollPosition <= centeredContainerMiddle
+    ) {
+      // Translation in
+      translateYValue = (1 - rowPosition) * -20; // Start at the top of the screen
+      row.style.transform = `translate(0%, ${translateYValue}vh)`;
+      row.style.opacity = rowPosition;
+    } else if (
+      scrollPosition > centeredContainerMiddle &&
+      scrollPosition <= stationaryEnd
+    ) {
+      // Stationary period
+      row.style.transform = `translate(0%, 0vh)`;
+      row.style.opacity = 1;
+    } else if (
+      scrollPosition > stationaryEnd &&
+      scrollPosition <= translateOutStart
+    ) {
+      // Translation out
+      rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
+      translateYValue = rowPosition * -100;
+      row.style.transform = `translate(0%, ${translateYValue}vh)`;
+      row.style.opacity = 1 - rowPosition;
+    } else if (scrollPosition < translateInStart) {
+      row.style.transform = `translate(0%, -100vh)`; // Initial off-screen position at the top
+      row.style.opacity = 0;
+    } else {
+      row.style.transform = `translate(0%, -100vh)`; // Initial off-screen position at the top
+      row.style.opacity = 0;
+    }
+
+    row.querySelectorAll(".hexagon").forEach((hexagon, index) => {
+      let hexagonPosition =
+        (scrollPosition - translateInStart) / translateDistance;
+      let translateXValue;
+
+      if (index === 0 || index === 1) {
+        // Hexagons one and two start all the way on the left
+        translateXValue = (1 - hexagonPosition) * -100;
+        translateXValue = Math.min(0, translateXValue); // Clamp translateXValue to a maximum of 0
+      } else if (index === 2) {
+        // Hexagon three starts on the right
+        translateXValue = (1 - hexagonPosition) * 100;
+        translateXValue = Math.max(0, translateXValue); // Clamp translateXValue to a minimum of 0
+      }
+
+      if (hexagonPosition > 1) hexagonPosition = 1;
+
+      if (
+        scrollPosition >= translateInStart &&
+        scrollPosition <= centeredContainerMiddle
+      ) {
+        // Translation in
+        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
+        hexagon.style.opacity = hexagonPosition;
+      } else if (
+        scrollPosition > centeredContainerMiddle &&
+        scrollPosition <= stationaryEnd
+      ) {
+        // Stationary period
+        hexagon.style.transform = `translate(0%, 0)`;
+        hexagon.style.opacity = 1;
+      } else if (
+        scrollPosition > stationaryEnd &&
+        scrollPosition <= translateOutStart
+      ) {
+        // Translation out
+        hexagonPosition = (scrollPosition - stationaryEnd) / translateDistance;
+        translateXValue =
+          index === 0 || index === 1
+            ? hexagonPosition * -100
+            : hexagonPosition * 100;
+        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
+        hexagon.style.opacity = 1 - hexagonPosition;
+      } else if (scrollPosition < translateInStart) {
+        hexagon.style.transform = `translate(${
+          index === 0 || index === 1 ? "-100%" : "100%"
+        }, 0)`;
+        hexagon.style.opacity = 0;
+      } else {
+        hexagon.style.transform = `translate(${
+          index === 0 || index === 1 ? "-100%" : "100%"
+        }, 0)`;
+        hexagon.style.opacity = 0;
+      }
+
+      console.log(`Row 1 Hexagon ${index + 1} Position:`, hexagonPosition);
+      console.log(`Translate: ${hexagon.style.transform}`);
+      console.log("hexagon.style.opacity", hexagon.style.opacity);
+    });
+  };
+
+  const updateRowTwoPosition = (
+    row,
+    scrollPosition,
+    translateDistance,
+    centeredContainerTop,
+    centeredContainerMiddle,
+    stationaryEnd,
+    translateOutStart
+  ) => {
+    const translateInStart = centeredContainerTop;
+    let rowPosition = (scrollPosition - translateInStart) / translateDistance;
+    let translateXValue, translateYValue;
+
+    if (rowPosition > 1) rowPosition = 1;
+
+    if (
+      scrollPosition >= translateInStart &&
+      scrollPosition <= centeredContainerMiddle
+    ) {
+      // Translation in
+      translateXValue = (1 - rowPosition) * 20;
+      translateYValue = (1 - rowPosition) * -20;
+      row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
+      row.style.opacity = rowPosition;
+    } else if (
+      scrollPosition > centeredContainerMiddle &&
+      scrollPosition <= stationaryEnd
+    ) {
+      // Stationary period
+      row.style.transform = `translate(0%, 0vh)`;
+      row.style.opacity = 1;
+    } else if (
+      scrollPosition > stationaryEnd &&
+      scrollPosition <= translateOutStart
+    ) {
+      // Translation out
+      rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
+      translateXValue = rowPosition * 20;
+      translateYValue = rowPosition * -20;
+      row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
+      row.style.opacity = 1 - rowPosition;
+    } else if (scrollPosition < translateInStart) {
+      row.style.transform = `translate(20%, -20vh)`;
+      row.style.opacity = 0;
+    } else {
+      row.style.transform = `translate(20%, -20vh)`;
+      row.style.opacity = 0;
+    }
+
+    console.log(`Row 2 Position:`, rowPosition);
+    console.log(`Translate: ${row.style.transform}`);
+    console.log("row.style.opacity", row.style.opacity);
+  };
+
+  const updateRowFourAndFivePosition = (
+    row,
+    scrollPosition,
+    translateDistance,
+    centeredContainerTop,
+    centeredContainerMiddle,
+    stationaryEnd,
+    translateOutStart
+  ) => {
+    const translateInStart = centeredContainerTop;
+    let rowPosition = (scrollPosition - translateInStart) / translateDistance;
+    let translateXValue, translateYValue;
+
+    if (rowPosition > 1) rowPosition = 1;
+
+    if (
+      scrollPosition >= translateInStart &&
+      scrollPosition <= centeredContainerMiddle
+    ) {
+      // Translation in
+      translateXValue = (1 - rowPosition) * -20;
+      translateYValue = (1 - rowPosition) * 20;
+      row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
+      row.style.opacity = rowPosition;
+    } else if (
+      scrollPosition > centeredContainerMiddle &&
+      scrollPosition <= stationaryEnd
+    ) {
+      // Stationary period
+      row.style.transform = `translate(0%, 0vh)`;
+      row.style.opacity = 1;
+    } else if (
+      scrollPosition > stationaryEnd &&
+      scrollPosition <= translateOutStart
+    ) {
+      // Translation out
+      rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
+      translateXValue = rowPosition * -20;
+      translateYValue = rowPosition * 20;
+      row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
+      row.style.opacity = 1 - rowPosition;
+    } else if (scrollPosition < translateInStart) {
+      row.style.transform = `translate(-20%, 20vh)`;
+      row.style.opacity = 0;
+    } else {
+      row.style.transform = `translate(-20%, 20vh)`;
+      row.style.opacity = 0;
+    }
+
+    console.log(
+      `Row ${Array.from(rows).indexOf(row) + 1} Position:`,
+      rowPosition
+    );
+    console.log(`Translate: ${row.style.transform}`);
+    console.log("row.style.opacity", row.style.opacity);
+  };
+
   const updateRowPositions = () => {
     const scrollPosition = window.scrollY;
     const centeredContainerRect = centeredContainer.getBoundingClientRect();
@@ -26,178 +245,40 @@ document.addEventListener("DOMContentLoaded", function () {
       (centeredContainerMiddle - centeredContainerTop) / 2; // Halve the translate distance
     const stationaryEnd = centeredContainerMiddle + bufferPeriod; // Define the end of the stationary period
 
-    rows.forEach((row, index) => {
-      const translateInStart = centeredContainerTop;
-      let rowPosition = (scrollPosition - translateInStart) / translateDistance;
-
-      let translateXValue;
-      let translateYValue;
-      let adjustedRowPosition;
-
-      if (row.classList.contains("three")) {
-        // Handle horizontal translation for the divs within row three
-        row.querySelectorAll("div").forEach((div, divIndex) => {
-          const translateInStart = centeredContainerTop;
-          let rowPosition =
-            (scrollPosition - translateInStart) / translateDistance;
-          let translateXValue;
-          let adjustedRowPosition;
-
-          if (divIndex === 0) {
-            // First div slides in from the left side
-            translateXValue = (1 - rowPosition) * -20; // Adjust initial off-screen position to -20%
-          } else {
-            // Second div slides in from the right side
-            translateXValue = (1 - rowPosition) * 20; // Adjust initial off-screen position to 20%
-          }
-
-          // Adjust rowPosition to control opacity transition timing
-          if (rowPosition >= 0.4) {
-            adjustedRowPosition = (rowPosition - 0.4) * 1.66; // Start opacity transition at 0.4
-          } else {
-            adjustedRowPosition = 0;
-          }
-
-          if (
-            scrollPosition >= translateInStart &&
-            scrollPosition <= centeredContainerMiddle
-          ) {
-            // Translation in
-            if (rowPosition <= 1) {
-              div.style.transform = `translateX(${translateXValue}%)`;
-              div.style.opacity = adjustedRowPosition;
-            } else {
-              div.style.transform = `translateX(0%)`;
-              div.style.opacity = 1;
-            }
-          } else if (
-            scrollPosition > centeredContainerMiddle &&
-            scrollPosition <= stationaryEnd
-          ) {
-            // Stationary period
-            div.style.transform = `translateX(0%)`;
-            div.style.opacity = 1;
-          } else if (
-            scrollPosition > stationaryEnd &&
-            scrollPosition <= translateOutStart
-          ) {
-            // Translation out
-            rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
-            if (divIndex === 0) {
-              translateXValue = rowPosition * -20; // Adjust translation value
-            } else {
-              translateXValue = rowPosition * 20; // Adjust translation value
-            }
-            div.style.transform = `translateX(${translateXValue}%)`;
-            div.style.opacity = 1 - rowPosition;
-          } else if (scrollPosition < translateInStart) {
-            div.style.transform = `translateX(${
-              divIndex === 0 ? "-20%" : "20%"
-            })`;
-            div.style.opacity = 0;
-          } else {
-            div.style.transform = `translateX(${
-              divIndex === 0 ? "-20%" : "20%"
-            })`;
-            div.style.opacity = 0;
-          }
-
-          console.log(`Row 3 Div ${divIndex + 1} Position:`, rowPosition);
-          console.log(`TranslateX: ${div.style.transform}`);
-          console.log("div.style.opacity", div.style.opacity);
-        });
-      } else if (
-        row.classList.contains("one") ||
-        row.classList.contains("two")
-      ) {
-        // Handle rows one and two
-        if (rowPosition > 1) {
-          rowPosition = 1; // Clamp row position to 1 during translate in
-        }
-
-        if (
-          scrollPosition >= translateInStart &&
-          scrollPosition <= centeredContainerMiddle
-        ) {
-          // Translation in
-          translateXValue = (1 - rowPosition) * 20; // Adjust initial off-screen position to 20%
-          translateYValue = (1 - rowPosition) * -20; // Adjust initial off-screen position to -20%
-          row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
-          row.style.opacity = rowPosition; // Opacity transition
-        } else if (
-          scrollPosition > centeredContainerMiddle &&
-          scrollPosition <= stationaryEnd
-        ) {
-          // Stationary period
-          row.style.transform = `translate(0%, 0vh)`;
-          row.style.opacity = 1;
-        } else if (
-          scrollPosition > stationaryEnd &&
-          scrollPosition <= translateOutStart
-        ) {
-          // Translation out
-          rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
-          translateXValue = rowPosition * 20; // Adjust translation value
-          translateYValue = rowPosition * -20; // Adjust translation value
-          row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
-          row.style.opacity = 1 - rowPosition;
-        } else if (scrollPosition < translateInStart) {
-          row.style.transform = `translate(20%, -20vh)`; // Initial off-screen position
-          row.style.opacity = 0;
-        } else {
-          row.style.transform = `translate(20%, -20vh)`; // Initial off-screen position
-          row.style.opacity = 0;
-        }
-
-        console.log(`Row ${index + 1} Position:`, rowPosition);
-        console.log(`Translate: ${row.style.transform}`);
-        console.log("row.style.opacity", row.style.opacity);
+    rows.forEach((row) => {
+      if (row.classList.contains("one")) {
+        updateRowOnePosition(
+          row,
+          scrollPosition,
+          translateDistance,
+          centeredContainerTop,
+          centeredContainerMiddle,
+          stationaryEnd,
+          translateOutStart
+        );
+      } else if (row.classList.contains("two")) {
+        updateRowTwoPosition(
+          row,
+          scrollPosition,
+          translateDistance,
+          centeredContainerTop,
+          centeredContainerMiddle,
+          stationaryEnd,
+          translateOutStart
+        );
       } else if (
         row.classList.contains("four") ||
         row.classList.contains("five")
       ) {
-        // Handle rows four and five
-        if (rowPosition > 1) {
-          rowPosition = 1; // Clamp row position to 1 during translate in
-        }
-
-        if (
-          scrollPosition >= translateInStart &&
-          scrollPosition <= centeredContainerMiddle
-        ) {
-          // Translation in
-          translateXValue = (1 - rowPosition) * -20; // Adjust initial off-screen position to -20%
-          translateYValue = (1 - rowPosition) * 20; // Adjust initial off-screen position to 20%
-          row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
-          row.style.opacity = rowPosition; // Opacity transition
-        } else if (
-          scrollPosition > centeredContainerMiddle &&
-          scrollPosition <= stationaryEnd
-        ) {
-          // Stationary period
-          row.style.transform = `translate(0%, 0vh)`;
-          row.style.opacity = 1;
-        } else if (
-          scrollPosition > stationaryEnd &&
-          scrollPosition <= translateOutStart
-        ) {
-          // Translation out
-          rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
-          translateXValue = rowPosition * -20; // Adjust translation value
-          translateYValue = rowPosition * 20; // Adjust translation value
-          row.style.transform = `translate(${translateXValue}%, ${translateYValue}vh)`;
-          row.style.opacity = 1 - rowPosition;
-        } else if (scrollPosition < translateInStart) {
-          row.style.transform = `translate(-20%, 20vh)`; // Initial off-screen position
-          row.style.opacity = 0;
-        } else {
-          row.style.transform = `translate(-20%, 20vh)`; // Initial off-screen position
-          row.style.opacity = 0;
-        }
-
-        console.log(`Row ${index + 1} Position:`, rowPosition);
-        console.log(`Translate: ${row.style.transform}`);
-        console.log("row.style.opacity", row.style.opacity);
+        updateRowFourAndFivePosition(
+          row,
+          scrollPosition,
+          translateDistance,
+          centeredContainerTop,
+          centeredContainerMiddle,
+          stationaryEnd,
+          translateOutStart
+        );
       }
     });
 
