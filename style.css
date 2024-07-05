@@ -49,6 +49,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 -15px; /* Add padding to account for the drop shadow */
+
 }
 
 .hexagon img {
