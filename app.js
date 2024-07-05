@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: -20,
     },
     two: {
-      hexagonStartPositions: [-150, 20, 140],
+      hexagonStartPositions: [0, -150, 0, 90, 140],
       translateYDirection: -20,
     },
     three: {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: 0,
     },
     four: {
-      hexagonStartPositions: [-150, 10, 80],
+      hexagonStartPositions: [-150, -80, -20, 40],
       translateYDirection: 20,
     },
     five: {
