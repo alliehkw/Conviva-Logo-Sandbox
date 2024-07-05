@@ -12,7 +12,7 @@ h1 {
 }
 
 .buffer {
-    height: 150vh; /* Further increase buffer height to provide more scrolling space */
+    height: 100vh; /* Further increase buffer height to provide more scrolling space */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,8 +44,8 @@ h1 {
 }
 
 .hexagon {
-    width: 209.354px; /* Width of the hexagon */
-    height: 238.826px; /* Height of the hexagon */
+    width: auto; /* Width of the hexagon */
+    height: 20vh; /* Height of the hexagon */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,10 +57,16 @@ h1 {
     height: 100%;
 }
 
-.row.one { top: 15%; }
-.row.two { top: 30%; }
-.row.four { top: 70%; }
-.row.five { top: 85%; }
+.row.one { top: 0%; }
+.row.two { 
+    top: 20%; 
+    margin-left: 8%;
+}
+.row.four { 
+    top: 60%; 
+    margin-left: -8%;
+}
+.row.five { top: 80%; }
 
 .centered-container {
     height: 350vh; /* Further increase height to provide more scrolling space */
@@ -78,12 +84,16 @@ h1 {
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: 66%;
+    width: 50%;
 }
 
 .centered > p {
-    background: var(--Gradient-_text, radial-gradient(286.04% 184.95% at 102.28% -9.7%, #9CDC00 0%, #90CB01 23.49%, #EFDC00 64.45%, #3CCBDA 100%));
+    background: radial-gradient(286.04% 184.95% at 102.28% -9.7%, rgba(156, 220, 0, 1) 0%, rgba(144, 203, 1, 1) 23.49%, rgba(239, 220, 0, 1) 64.45%, rgba(60, 203, 218, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%;
 }
