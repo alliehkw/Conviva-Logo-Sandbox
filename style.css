@@ -83,7 +83,7 @@ h1 {
 .row.four { 
     top: calc(50vh + 12vh); /* Top of row four is 10vh below the bottom of centered text */
     margin-left: calc(-1.3 * var(--hexagon-width)); /* Adjust margin-left in pixels */
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 .row.five { 
     top: calc(100vh + 5vh - var(--hexagon-height)); /* Top of row five is 5vh above the bottom of the screen */
