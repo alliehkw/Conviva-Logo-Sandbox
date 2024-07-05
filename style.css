@@ -87,7 +87,7 @@ h1 {
 }
 .row.five { 
     top: calc(100vh + 5vh - var(--hexagon-height)); /* Top of row five is 5vh above the bottom of the screen */
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .centered-container {

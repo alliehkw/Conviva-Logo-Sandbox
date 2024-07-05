@@ -532,6 +532,64 @@ document.addEventListener("DOMContentLoaded", function () {
       row.style.opacity = 0;
     }
 
+    row.querySelectorAll(".hexagon").forEach((hexagon, index) => {
+      let hexagonPosition =
+        (scrollPosition - translateInStart) / translateDistance;
+      let translateXValue;
+
+      if (index === 0) {
+        // Hexagon one starts all the way on the left
+        translateXValue = (1 - hexagonPosition) * -100;
+        translateXValue = Math.min(0, translateXValue); // Clamp translateXValue to a maximum of 0
+      } else if (index === 1 || index === 2) {
+        // Hexagons two and three start on the right
+        translateXValue = (1 - hexagonPosition) * 100;
+        translateXValue = Math.max(0, translateXValue); // Clamp translateXValue to a minimum of 0
+      }
+
+      if (hexagonPosition > 1) hexagonPosition = 1;
+
+      if (
+        scrollPosition >= translateInStart &&
+        scrollPosition <= centeredContainerMiddle
+      ) {
+        // Translation in
+        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
+        hexagon.style.opacity = hexagonPosition;
+      } else if (
+        scrollPosition > centeredContainerMiddle &&
+        scrollPosition <= stationaryEnd
+      ) {
+        // Stationary period
+        hexagon.style.transform = `translate(0%, 0)`;
+        hexagon.style.opacity = 1;
+      } else if (
+        scrollPosition > stationaryEnd &&
+        scrollPosition <= translateOutStart
+      ) {
+        // Translation out
+        hexagonPosition = (scrollPosition - stationaryEnd) / translateDistance;
+        translateXValue =
+          index === 0 ? hexagonPosition * -100 : hexagonPosition * 100;
+        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
+        hexagon.style.opacity = 1 - hexagonPosition;
+      } else if (scrollPosition < translateInStart) {
+        hexagon.style.transform = `translate(${
+          index === 0 ? "-100%" : "100%"
+        }, 0)`;
+        hexagon.style.opacity = 0;
+      } else {
+        hexagon.style.transform = `translate(${
+          index === 0 ? "-100%" : "100%"
+        }, 0)`;
+        hexagon.style.opacity = 0;
+      }
+
+      console.log(`Row 5 Hexagon ${index + 1} Position:`, hexagonPosition);
+      console.log(`Translate: ${hexagon.style.transform}`);
+      console.log("hexagon.style.opacity", hexagon.style.opacity);
+    });
+
     console.log(`Row 5 Position:`, rowPosition);
     console.log(`Translate: ${row.style.transform}`);
     console.log("row.style.opacity", row.style.opacity);
