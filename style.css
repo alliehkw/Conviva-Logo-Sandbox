@@ -18,43 +18,48 @@ h1 {
     align-items: center;
 }
 
-/* Make sure there's enough height for the rows to start off-screen */
 .block-container {
     position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .row {
     position: fixed; /* Fixed position relative to viewport */
-    width: 100%;
+    width: 100%; /* Set a width for the rows to make them centered */
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center content within the row */
     gap: 20px;
     opacity: 0; /* Hidden initially */
-    transform: translateX(-100%); /* Start off-screen to the left */
 }
 
-.row > div {
-    background-color: #145377;
-    filter: drop-shadow(0px 11px 21px rgba(0, 55, 76, 0.68));
+.row.three {
+    top: 50%;
+    transform: translateY(-50%); /* Always center vertically */
+    opacity: 1; /* Ensure it is visible */
+    display: flex;
+    justify-content: space-between;
 }
 
-.row.one { top: 20%; }
-.row.two { 
-    top: 30%; 
-    margin-left: 60px;
+.hexagon {
+    width: 209.354px; /* Width of the hexagon */
+    height: 238.826px; /* Height of the hexagon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.row.three { 
-    top: 60%;
-    margin-left: -60px;
+
+.hexagon img {
+    width: 100%;
+    height: 100%;
 }
+
+.row.one { top: 15%; }
+.row.two { top: 30%; }
 .row.four { top: 70%; }
-.row.five { top: 100%; }
-
-.row p {
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-}
+.row.five { top: 85%; }
 
 .centered-container {
     height: 300vh;
