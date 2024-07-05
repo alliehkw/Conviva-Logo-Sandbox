@@ -11,6 +11,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const viewportHeight = window.innerHeight;
   const bufferPeriod = 0.25 * viewportHeight; // Define a 25vh buffer period
 
+  const rowConfigurations = {
+    one: {
+      hexagonStartPositions: [-100, -100, 100],
+      translateYDirection: -20,
+    },
+    two: {
+      hexagonStartPositions: [-100, 0, 100],
+      translateYDirection: -20,
+    },
+    three: {
+      hexagonStartPositions: [-100, 100],
+      translateYDirection: 0,
+    },
+    four: {
+      hexagonStartPositions: [-100, -100, 100],
+      translateYDirection: 20,
+    },
+    five: {
+      hexagonStartPositions: [-100, 100, 100],
+      translateYDirection: 20,
+    },
+  };
+
   const updateRowPosition = (
     row,
     scrollPosition,
@@ -124,8 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
       (centeredContainerMiddle - centeredContainerTop) / 2; // Halve the translate distance
     const stationaryEnd = centeredContainerMiddle + bufferPeriod; // Define the end of the stationary period
 
-    rows.forEach((row) => {
-      if (row.classList.contains("one")) {
+    rows.forEach((row, index) => {
+      const rowClass = row.classList[1]; // Assuming the row class is always the second class
+      const config = rowConfigurations[rowClass];
+
+      if (config) {
         updateRowPosition(
           row,
           scrollPosition,
@@ -134,56 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
           centeredContainerMiddle,
           stationaryEnd,
           translateOutStart,
-          [-100, -100, 100], // Hexagon start positions for row one
-          -20 // Translate Y direction for row one
-        );
-      } else if (row.classList.contains("two")) {
-        updateRowPosition(
-          row,
-          scrollPosition,
-          translateDistance,
-          centeredContainerTop,
-          centeredContainerMiddle,
-          stationaryEnd,
-          translateOutStart,
-          [-100, 0, 100], // Hexagon start positions for row two
-          -20 // Translate Y direction for row two
-        );
-      } else if (row.classList.contains("three")) {
-        updateRowPosition(
-          row,
-          scrollPosition,
-          translateDistance,
-          centeredContainerTop,
-          centeredContainerMiddle,
-          stationaryEnd,
-          translateOutStart,
-          [-100, 100], // Hexagon start positions for row three
-          0 // No Translate Y direction for row three
-        );
-      } else if (row.classList.contains("four")) {
-        updateRowPosition(
-          row,
-          scrollPosition,
-          translateDistance,
-          centeredContainerTop,
-          centeredContainerMiddle,
-          stationaryEnd,
-          translateOutStart,
-          [-100, -100, 100], // Hexagon start positions for row four
-          20 // Translate Y direction for row four
-        );
-      } else if (row.classList.contains("five")) {
-        updateRowPosition(
-          row,
-          scrollPosition,
-          translateDistance,
-          centeredContainerTop,
-          centeredContainerMiddle,
-          stationaryEnd,
-          translateOutStart,
-          [-100, 100, 100], // Hexagon start positions for row five
-          20 // Translate Y direction for row five
+          config.hexagonStartPositions,
+          config.translateYDirection
         );
       }
     });
