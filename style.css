@@ -1,3 +1,8 @@
+:root {
+    --hexagon-height: 22vh;
+    --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -31,8 +36,16 @@ h1 {
     width: 100%; /* Set a width for the rows to make them centered */
     display: flex;
     justify-content: center; /* Center content within the row */
-    gap: 20px;
     opacity: 0; /* Hidden initially */
+}
+
+.hexagon {
+    width: auto; /* Width of the hexagon */
+    height: var(--hexagon-height); /* Use the CSS variable for height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
 }
 
 .row.three {
@@ -43,13 +56,12 @@ h1 {
     justify-content: space-between;
 }
 
-.hexagon {
-    width: auto; /* Width of the hexagon */
-    height: 20vh; /* Height of the hexagon */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 -15px; /* Add padding to account for the drop shadow */
+.row.three .hexagon.left-logo {
+    margin-left: calc(-1/8 * (var(--hexagon-width)));
+}
+
+.row.three .hexagon.right-logo {
+    margin-right: calc(-1/8 * (var(--hexagon-width)));
 }
 
 .hexagon img {
@@ -57,16 +69,21 @@ h1 {
     height: 100%;
 }
 
-.row.one { top: 0%; }
+/* Adjust specific row heights using the variable */
+.row.one { 
+    top: -3vh; /* Bottom of row one is 5vh + hexagon height from the top */
+}
 .row.two { 
-    top: 20%; 
-    margin-left: 8%;
+    top: calc(50vh - var(--hexagon-height) - 10vh); /* Bottom of row two is 5vh above centered text */
+    margin-left: calc(1.3 * (var(--hexagon-width))); /* Adjust margin-left in pixels */
 }
 .row.four { 
-    top: 60%; 
-    margin-left: -8%;
+    top: calc(50vh + 10vh); /* Top of row four is 10vh below the bottom of centered text */
+    margin-left: calc(-1.3 * var(--hexagon-width)); /* Adjust margin-left in pixels */
 }
-.row.five { top: 80%; }
+.row.five { 
+    top: calc(100vh + 4vh - var(--hexagon-height)); /* Top of row five is 5vh above the bottom of the screen */
+}
 
 .centered-container {
     height: 350vh; /* Further increase height to provide more scrolling space */
