@@ -12,7 +12,7 @@ h1 {
 }
 
 .buffer {
-    height: 50vh;
+    height: 150vh; /* Further increase buffer height to provide more scrolling space */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +50,6 @@ h1 {
     justify-content: center;
     align-items: center;
     margin: 0 -15px; /* Add padding to account for the drop shadow */
-
 }
 
 .hexagon img {
@@ -64,7 +63,7 @@ h1 {
 .row.five { top: 85%; }
 
 .centered-container {
-    height: 300vh;
+    height: 350vh; /* Further increase height to provide more scrolling space */
     display: flex;
     justify-content: center;
     align-items: top;
