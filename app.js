@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const rowConfigurations = {
     one: {
-      hexagonStartPositions: [-100, -100, 100, 100, 100],
+      hexagonStartPositions: [-100, -120, -100, 50, 180],
       translateYDirection: -20,
     },
     two: {
-      hexagonStartPositions: [-100, 0, 100],
+      hexagonStartPositions: [0, -150, 0, 90, 140],
       translateYDirection: -20,
     },
     three: {
@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: 0,
     },
     four: {
-      hexagonStartPositions: [-100, -100, 100],
+      hexagonStartPositions: [-150, -80, -20, 40],
       translateYDirection: 20,
     },
     five: {
-      hexagonStartPositions: [-100, 100, 100],
+      hexagonStartPositions: [-100, -25, 100, 75, 100],
       translateYDirection: 20,
     },
   };
