@@ -3,9 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const rows = document.querySelectorAll(".row");
   const centeredText = document.querySelector(".centered");
   const corners = document.querySelectorAll(".corner");
+  const fogOverlay = document.querySelector(".fog-overlay");
 
-  if (!centeredContainer || !rows.length || !centeredText) {
-    console.error("Centered container, centered text, or rows not found");
+  if (!centeredContainer || !rows.length || !centeredText || !fogOverlay) {
+    console.error(
+      "Centered container, centered text, rows, or fog overlay not found"
+    );
     return;
   }
 
@@ -247,6 +250,23 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       centeredText.style.position = "static";
       centeredText.style.transform = "none";
+    }
+
+    // Update fog overlay opacity
+    if (
+      scrollPosition < centeredContainerTop ||
+      scrollPosition > translateOutStart
+    ) {
+      fogOverlay.style.opacity = 0;
+    } else if (
+      scrollPosition >= centeredContainerTop &&
+      scrollPosition <= stationaryEnd
+    ) {
+      fogOverlay.style.opacity = 1;
+    } else {
+      const fadeOutPosition =
+        (scrollPosition - stationaryEnd) / translateDistance;
+      fogOverlay.style.opacity = 1 - fadeOutPosition;
     }
   };
 
