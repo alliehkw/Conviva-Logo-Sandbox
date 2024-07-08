@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const centeredText = document.querySelector(".centered");
   const corners = document.querySelectorAll(".corner");
   const fogOverlay = document.querySelector(".fog-overlay");
-  // TODO: get ride of corner-top-overlay code
+
   if (!centeredContainer || !rows.length || !centeredText || !fogOverlay) {
     console.error(
       "Centered container, centered text, rows, or fog overlay not found"
@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     two: {
       startPositions: [-250, -60, 90, 140, 0],
       translateYDirection: -20,
+    },
+    three: {
+      startPositions: [-300, 300],
+      translateYDirection: 0,
     },
     four: {
       startPositions: [-150, -100, 80, 200, 0],
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (rowPosition > 1) rowPosition = 1;
 
-    if (translateYDirection !== 0) {
+    if (translateYDirection !== 0 || row.classList.contains("three")) {
       if (
         scrollPosition >= translateInStart &&
         scrollPosition <= centeredContainerMiddle
