@@ -1,6 +1,8 @@
 :root {
-    --hexagon-height: 25vh;
+    --hexagon-height: 28vh;
     --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+    --four-five-shift: -8vw;
+    --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height))
 }
 
 body {
@@ -24,7 +26,7 @@ h1 {
 }
 
 .block-container {
-    position: relative;
+    position: absolute;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,8 +37,26 @@ h1 {
     position: fixed; /* Fixed position relative to viewport */
     width: 100%; /* Set a width for the rows to make them centered */
     display: flex;
-    justify-content: center; /* Center content within the row */
+    justify-content: flex-end; /* Center content within the row */
     opacity: 0; /* Hidden initially */
+    overflow: visible;
+    max-height: (var(--hexagon-height));
+}
+
+.row.four, .row.five {
+    justify-content: flex-start;
+}
+
+.row.five {
+    align-items: flex-end;
+}
+
+.hexagons-only .row {
+    z-index: 1; /* Ensure hexagons are behind the images and fog overlay */
+}
+
+.images-only .row {
+    z-index: 10; /* Ensure images are in front of the fog overlay */
 }
 
 .hexagon {
@@ -45,25 +65,46 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     background-image: url('hexagon.svg'); /* Set the SVG as the background image */
     background-repeat: no-repeat; /* Ensure the background doesn't repeat */
     background-position: center center; /* Center the background image */
     background-size: contain; /* Ensure the SVG scales properly */
     position: relative;
+    z-index: 2; /* Ensure the hexagons are behind the fog overlay */
 }
 
-.hexagon.ghost  {
+.giant-hex {
+    background-image: none;
+    /* background-repeat: no-repeat; 
+    background-position: center center;
+    background-size: contain;
+    position: relative; */
+    z-index: 2; /* Ensure the hexagons are behind the fog overlay */
+}
+
+.giant-hex img {
+    width: calc(2 * var(--hexagon-width)); /* Width of the hexagon */
+    height: calc(2 * var(--hexagon-height)); /* Use the CSS variable for height */
+}
+
+.one.giant-hex {
+    justify-content: flex-end;
+}
+.one.giant-hex img {
+    margin-top: var(--giant-hex-shift-vert);
+}
+
+.five.giant-hex {
+    justify-content: flex-start;
+}
+
+.five.giant-hex img {
+    margin-bottom: var(--giant-hex-shift-vert);
+}
+
+.hexagon.ghost {
     opacity: 0 !important; /* This is to keep things centered the way I want */
-}
-
-.row.three {
-    top: 50%;
-    transform: translateY(-50%); /* Always center vertically */
-    opacity: 1; /* Ensure it is visible */
-    display: flex;
-    justify-content: space-between;
-    /* background-color: blue; */
 }
 
 .row.three .hexagon.left-logo {
@@ -75,13 +116,20 @@ h1 {
 }
 
 .img-containing-div {
-    /* background-color: orange; */
-    height: 30%;
-    width: 50%;
-    margin-top: calc(-1 * (var(--hexagon-height)/13));
+    width: var(--hexagon-width);
+    height: var(--hexagon-height);
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-left: 40px; */
+}
+
+.image-sizer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 60%;
 }
 
 .img-containing-div img {
@@ -91,23 +139,23 @@ h1 {
     z-index: 1; /* Ensure the image is on top of the background */
 }
 
-/* Adjust specific row heights using the variable */
 .row.one { 
-    top: -6vh; /* Bottom of row one is 5vh + hexagon height from the top */
+    top: -5vh; /* Bottom of row one is 5vh + hexagon height from the top */
     /* background-color:red; */
 }
 .row.two { 
-    top: calc(50vh - var(--hexagon-height) - 10vh); /* Bottom of row two is 5vh above centered text */
-    margin-left: calc(1.3 * (var(--hexagon-width))); /* Adjust margin-left in pixels */
+    top: calc((var(--hexagon-height) * .7) - 5vh);
+    margin-left: var(--hexagon-width); /* Adjust margin-left in pixels */
     /* background-color: green; */
 }
 .row.four { 
-    top: calc(50vh + 13vh); /* Top of row four is 10vh below the bottom of centered text */
-    margin-left: calc(-1.3 * var(--hexagon-width)); /* Adjust margin-left in pixels */
+    bottom: calc((var(--hexagon-height) * .7) - 5vh);
+    margin-left: calc((var(--hexagon-width)) + var(--four-five-shift)); /* Adjust margin-left in pixels */
     /* background-color: yellow; */
 }
 .row.five { 
-    top: calc(100vh + 9vh - var(--hexagon-height)); /* Top of row five is 5vh above the bottom of the screen */
+    bottom: -5vh;
+    margin-left: var(--four-five-shift);
     /* background-color: pink; */
 }
 
@@ -127,7 +175,7 @@ h1 {
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: 50%;
+    width: 75%;
 }
 
 .centered > p {
@@ -141,11 +189,11 @@ h1 {
     line-height: 130%;
 }
 
-.corner {
+/* .corner {
     position: fixed;
     width: calc(var(--hexagon-width) * 2);
     height: calc(var(--hexagon-height) * 2);
-    opacity: 0; /* Hidden initially */
+    opacity: 0;
     object-fit: contain;
 }
 
@@ -162,7 +210,7 @@ h1 {
 .corner.bottom-right {
     bottom: -18vh;
     right: -5vw;
-}
+} */
 
 .fog-overlay {
     position: fixed;
@@ -172,7 +220,7 @@ h1 {
     height: 100%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0) 30%, rgba(0, 27, 45, 0.9) 95%);
     pointer-events: none;
-    z-index: 5; /* Ensure it is above other content but below centered text */
+    z-index: 5; /* Ensure it is above other content but below the images */
     opacity: 0;
     transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
 }

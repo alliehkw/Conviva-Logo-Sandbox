@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const centeredText = document.querySelector(".centered");
   const corners = document.querySelectorAll(".corner");
   const fogOverlay = document.querySelector(".fog-overlay");
-
+  // TODO: get ride of corner-top-overlay code
   if (!centeredContainer || !rows.length || !centeredText || !fogOverlay) {
     console.error(
       "Centered container, centered text, rows, or fog overlay not found"
@@ -17,23 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const rowConfigurations = {
     one: {
-      hexagonStartPositions: [-100, -120, -100, 50, 180],
+      startPositions: [-200, -120, -80, 50, 180],
       translateYDirection: -20,
     },
     two: {
-      hexagonStartPositions: [0, -150, 0, 90, 140],
+      startPositions: [-250, -60, 90, 140, 0],
       translateYDirection: -20,
     },
-    three: {
-      hexagonStartPositions: [-100, 100],
-      translateYDirection: 0,
-    },
     four: {
-      hexagonStartPositions: [-150, -80, -20, 40],
+      startPositions: [-150, -100, 80, 200, 0],
       translateYDirection: 20,
     },
     five: {
-      hexagonStartPositions: [-100, -25, 100, 75, 100],
+      startPositions: [-100, -25, 50, 75, 200],
       translateYDirection: 20,
     },
   };
@@ -46,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     centeredContainerMiddle,
     stationaryEnd,
     translateOutStart,
-    hexagonStartPositions,
+    startPositions,
     translateYDirection
   ) => {
     const translateInStart = centeredContainerTop;
@@ -89,49 +85,50 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    row.querySelectorAll(".hexagon").forEach((hexagon, index) => {
-      let hexagonPosition =
+    const elements = row.querySelectorAll(".hexagon, .img-containing-div");
+    elements.forEach((element, index) => {
+      let elementPosition =
         (scrollPosition - translateInStart) / translateDistance;
       let translateXValue;
 
-      translateXValue = (1 - hexagonPosition) * hexagonStartPositions[index];
-      if (hexagonStartPositions[index] < 0) {
+      translateXValue = (1 - elementPosition) * startPositions[index];
+      if (startPositions[index] < 0) {
         translateXValue = Math.min(0, translateXValue); // Clamp translateXValue to a maximum of 0
       } else {
         translateXValue = Math.max(0, translateXValue); // Clamp translateXValue to a minimum of 0
       }
 
-      if (hexagonPosition > 1) hexagonPosition = 1;
+      if (elementPosition > 1) elementPosition = 1;
 
       if (
         scrollPosition >= translateInStart &&
         scrollPosition <= centeredContainerMiddle
       ) {
         // Translation in
-        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
-        hexagon.style.opacity = hexagonPosition;
+        element.style.transform = `translate(${translateXValue}%, 0)`;
+        element.style.opacity = elementPosition;
       } else if (
         scrollPosition > centeredContainerMiddle &&
         scrollPosition <= stationaryEnd
       ) {
         // Stationary period
-        hexagon.style.transform = `translate(0%, 0)`;
-        hexagon.style.opacity = 1;
+        element.style.transform = `translate(0%, 0)`;
+        element.style.opacity = 1;
       } else if (
         scrollPosition > stationaryEnd &&
         scrollPosition <= translateOutStart
       ) {
         // Translation out
-        hexagonPosition = (scrollPosition - stationaryEnd) / translateDistance;
-        translateXValue = hexagonPosition * hexagonStartPositions[index];
-        hexagon.style.transform = `translate(${translateXValue}%, 0)`;
-        hexagon.style.opacity = 1 - hexagonPosition;
+        elementPosition = (scrollPosition - stationaryEnd) / translateDistance;
+        translateXValue = elementPosition * startPositions[index];
+        element.style.transform = `translate(${translateXValue}%, 0)`;
+        element.style.opacity = 1 - elementPosition;
       } else if (scrollPosition < translateInStart) {
-        hexagon.style.transform = `translate(${hexagonStartPositions[index]}%, 0)`;
-        hexagon.style.opacity = 0;
+        element.style.transform = `translate(${startPositions[index]}%, 0)`;
+        element.style.opacity = 0;
       } else {
-        hexagon.style.transform = `translate(${hexagonStartPositions[index]}%, 0)`;
-        hexagon.style.opacity = 0;
+        element.style.transform = `translate(${startPositions[index]}%, 0)`;
+        element.style.opacity = 0;
       }
     });
   };
@@ -227,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
           centeredContainerMiddle,
           stationaryEnd,
           translateOutStart,
-          config.hexagonStartPositions,
+          config.startPositions,
           config.translateYDirection
         );
       }
