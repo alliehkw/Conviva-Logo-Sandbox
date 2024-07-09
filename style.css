@@ -1,7 +1,9 @@
 :root {
-    --hexagon-height: 28vh;
+    --hexagon-height: 25vh;
     --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
-    --four-five-shift: -8vw;
+    --hexagon-gap: calc(var(--hexagon-width)/5);
+    --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+    --shift-up-down: 6vh;
     --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height))
 }
 
@@ -34,17 +36,14 @@ h1 {
 }
 
 .row {
-    position: fixed; /* Fixed position relative to viewport */
-    width: 100%; /* Set a width for the rows to make them centered */
+    position: fixed;
+    width: 100%;
     display: flex;
-    justify-content: flex-end; /* Center content within the row */
+    justify-content: center;
     opacity: 0; /* Hidden initially */
     overflow: visible;
     max-height: (var(--hexagon-height));
-}
-
-.row.four, .row.five {
-    justify-content: flex-start;
+    gap: var(--hexagon-gap);
 }
 
 .row.five {
@@ -65,7 +64,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('hexagon.svg'); /* Set the SVG as the background image */
+    background-image: url('hexagon.svg');
     background-repeat: no-repeat; /* Ensure the background doesn't repeat */
     background-position: center center; /* Center the background image */
     background-size: contain; /* Ensure the SVG scales properly */
@@ -78,45 +77,75 @@ h1 {
     z-index: 2; /* Ensure the hexagons are behind the fog overlay */
 }
 
-.giant-hex img {
-    width: calc(2 * var(--hexagon-width)); /* Width of the hexagon */
-    height: calc(2 * var(--hexagon-height)); /* Use the CSS variable for height */
+.row.one .giant-hex {
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: calc(2 * var(--shift-up-down));
 }
 
-.one.giant-hex {
+.row.two .giant-hex {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: calc(-2 * var(--shift-up-down));
+}
+
+/* .row.three .giant-hex {
+    justify-content: unset;
+    align-items: unset;
+    margin-bottom: calc(2 * var(--shift-up-down));
+} */
+
+.row.five .giant-hex {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: calc(2 * var(--shift-up-down));
+}
+
+.giant-hex img {
+    width: calc(3 * var(--hexagon-width)); /* Width of the hexagon */
+    height: calc(3 * var(--hexagon-height)); /* Use the CSS variable for height */
+}
+
+/* .one.giant-hex {
     justify-content: flex-end;
 }
+
 .one.giant-hex img {
     margin-top: var(--giant-hex-shift-vert);
-}
+} */
 
-.three .giant-hex.one img {
+/* .three .giant-hex.one img {
     margin-top: calc(1.5 * var(--giant-hex-shift-vert));
 }
 
 .three .giant-hex.five img {
     margin-bottom: calc(1.5 * var(--giant-hex-shift-vert));
-}
+} */
 
-.five.giant-hex {
+/* .five.giant-hex {
     justify-content: flex-start;
-}
+    align-items: flex-start;
+} */
 
-.five.giant-hex img {
+/* .five.giant-hex img {
     margin-bottom: var(--giant-hex-shift-vert);
+} */
+
+.one .hexagon.ghost {
+    background-image: url('hexagon-row-one.svg');
 }
 
-.hexagon.ghost {
-    opacity: 0 !important; /* This is to keep things centered the way I want */
+.four .hexagon.ghost{
+    background-image: url('hexagon-row-four.svg');
 }
 
-.row.three .one.giant-hex {
-    margin-left: calc(-1/8 * (var(--hexagon-width)));
+.hexagon.hidden {
+    opacity: 0 !important;
 }
 
-.row.three .five.giant-hex {
+/* .row.three .five.giant-hex {
     margin-right: calc(-1/8 * (var(--hexagon-width)));
-}
+} */
 
 .img-containing-div {
     width: var(--hexagon-width);
@@ -142,33 +171,31 @@ h1 {
 }
 
 .row.one { 
-    top: -5vh; /* Bottom of row one is 5vh + hexagon height from the top */
-    /* background-color:red; */
+    top: calc(-1 * var(--shift-up-down));
+    margin-left: var(--hexagon-shift);
 }
 
 .row.two { 
-    top: calc((var(--hexagon-height) * .7) - 5vh);
-    margin-left: var(--hexagon-width); /* Adjust margin-left in pixels */
-    /* background-color: green; */
+    top: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
+    margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
 }
 
 .row.three {
-    justify-content: space-between; /* Push items to the edges */
-    top: 50vh; /* Position the top of the element at the middle of the viewport */
+    justify-content: flex-end;
+    top: 50vh;
     transform: translateY(-50%) !important;
-    width: 100%; /* Ensure the row spans the full width */
+    width: 100%;
     margin-left: -3vw;
 }
 
 .row.four { 
-    bottom: calc((var(--hexagon-height) * .7) - 5vh);
-    margin-left: calc((var(--hexagon-width)) + var(--four-five-shift)); /* Adjust margin-left in pixels */
+    bottom: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
+    margin-right: calc(3 * var(--hexagon-shift));
     /* background-color: yellow; */
 }
 .row.five { 
-    bottom: -5vh;
-    margin-left: var(--four-five-shift);
-    /* background-color: pink; */
+    bottom: calc(-1 * var(--shift-up-down));
+    margin-right: calc(2 * var(--hexagon-shift));
 }
 
 .centered-container {
@@ -187,7 +214,7 @@ h1 {
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: 75%;
+    width: 78%;
 }
 
 .centered > p {
