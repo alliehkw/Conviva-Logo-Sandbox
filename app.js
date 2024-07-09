@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
       startPositions: [-250, -60, 90, 140, 0],
       translateYDirection: -20,
     },
-    three: {
-      startPositions: [300],
-      translateYDirection: 0,
-    },
+    // three: {
+    //   startPositions: [300],
+    //   translateYDirection: 0,
+    // },
     four: {
       startPositions: [-150, -100, 80, 200, 0],
       translateYDirection: 20,

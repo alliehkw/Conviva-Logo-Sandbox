@@ -135,8 +135,16 @@ h1 {
     background-image: url('hexagon-row-one.svg');
 }
 
+.two .hexagon.ghost{
+    background-image: url('hexagon-row-two.svg');
+}
+
 .four .hexagon.ghost{
     background-image: url('hexagon-row-four.svg');
+}
+
+.five .hexagon.ghost {
+    background-image: url('hexagon-row-five.svg');
 }
 
 .hexagon.hidden {
@@ -214,7 +222,7 @@ h1 {
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: 78%;
+    width: 65%;
 }
 
 .centered > p {
@@ -222,7 +230,7 @@ h1 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 32px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
