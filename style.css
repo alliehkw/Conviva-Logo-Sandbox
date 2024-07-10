@@ -3,8 +3,50 @@
     --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
     --hexagon-gap: calc(var(--hexagon-width)/5);
     --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+    --row-two-three-shift: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
     --shift-up-down: 6vh;
-    --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height))
+    --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height));
+    --row-one-margin-left: var(--hexagon-shift);
+    --row-two-margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
+    --row-three-margin-right: calc(3 * var(--hexagon-shift));
+    --row-four-margin-right: calc(3 * var(--hexagon-shift));
+}
+
+@media screen and (max-width: 1080px) {
+    body {
+        background-color: green;
+    }
+    :root {
+        --hexagon-height: 17vh;
+        --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+        --hexagon-gap: calc(var(--hexagon-width)/4);
+        --hexagon-shift: calc(-1 * var(--hexagon-gap));
+        --row-two-three-shift: calc((var(--hexagon-height)));
+        --shift-up-down: 0vh;
+        /* --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height)); */
+        --row-one-margin-left: calc(2 * var(--hexagon-shift));
+        --row-two-margin-right: calc(var(--hexagon-shift) - 3 * var(--hexagon-shift));
+        --row-three-margin-right: calc(-1 * var(--hexagon-shift));
+        --row-four-margin-right: calc(-1 * var(--hexagon-shift));
+    }
+    .hexagon {
+        min-width: var(--hexagon-width);
+    }
+    .row.two .hexagon.giant-hex {
+        display: none;
+    }
+    .hexagon.hidden {
+        display: none;
+    }
+    .hexagon.ghost {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background-color: red;
+    }
 }
 
 body {
@@ -145,22 +187,22 @@ h1 {
 
 .row.one { 
     top: calc(-1 * var(--shift-up-down));
-    margin-left: var(--hexagon-shift);
+    margin-left: var(--row-one-margin-left);
 }
 
 .row.two { 
-    top: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
-    margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
+    top: var(--row-two-three-shift);
+    margin-right: var(--row-two-margin-right);
 }
 
 .row.three { 
-    bottom: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
-    margin-right: calc(3 * var(--hexagon-shift));
+    bottom: var(--row-two-three-shift);
+    margin-right: var(--row-three-margin-right);
 }
 
 .row.four { 
     bottom: calc(-1 * var(--shift-up-down));
-    margin-right: calc(2 * var(--hexagon-shift));
+    margin-right: var(--row-four-margin-right);
 }
 
 .centered-container {
@@ -206,15 +248,5 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
-@media screen and (max-width: 1080px) {
-    body {
-        background-color: green;
-    }
-}
 
-@media screen and (max-width: 480px) {
-    body {
-        background-color: red;
-    }
-}
 
