@@ -164,7 +164,7 @@ h1 {
 }
 
 .centered-container {
-    height: 350vh; /* Further increase height to provide more scrolling space */
+    height: 350vh;
     display: flex;
     justify-content: center;
     align-items: top;
@@ -193,29 +193,6 @@ h1 {
     line-height: 130%;
 }
 
-/* .corner {
-    position: fixed;
-    width: calc(var(--hexagon-width) * 2);
-    height: calc(var(--hexagon-height) * 2);
-    opacity: 0;
-    object-fit: contain;
-}
-
-.corner img {
-    height: 100%;
-    width: 100%;
-}
-
-.corner.top-left {
-    top: -15vh;
-    left: -5vw;
-}
-
-.corner.bottom-right {
-    bottom: -18vh;
-    right: -5vw;
-} */
-
 .fog-overlay {
     position: fixed;
     top: 0;
@@ -224,7 +201,20 @@ h1 {
     height: 100%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0) 30%, rgba(0, 27, 45, 0.9) 95%);
     pointer-events: none;
-    z-index: 5; /* Ensure it is above other content but below the images */
+    z-index: 5;
     opacity: 0;
-    transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+    transition: opacity 0.3s ease;
 }
+
+@media screen and (max-width: 1080px) {
+    body {
+        background-color: green;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background-color: red;
+    }
+}
+

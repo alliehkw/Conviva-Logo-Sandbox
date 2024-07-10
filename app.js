@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: -20,
     },
     three: {
-      startPositions: [-150, -50, -10, 80, 100, 0, 0],
+      startPositions: [0, -50, 0, -10, 80, 100, 0],
       translateYDirection: 20,
     },
     four: {
