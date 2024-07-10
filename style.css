@@ -5,11 +5,12 @@
     --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
     --row-two-three-shift: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
     --shift-up-down: 6vh;
-    --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height));
+    --row-one-giant-hex-margin-top: calc(2 * var(--shift-up-down));
+    --row-four-giant-hex-margin-bottom: calc(2* var(--shift-up-down));
     --row-one-margin-left: var(--hexagon-shift);
     --row-two-margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
-    --row-three-margin-right: calc(3 * var(--hexagon-shift));
-    --row-four-margin-right: calc(3 * var(--hexagon-shift));
+    --row-three-margin-right: calc(2 * var(--hexagon-shift));
+    --row-four-margin-right: calc(1 * var(--hexagon-shift));
 }
 
 @media screen and (max-width: 1080px) {
@@ -17,20 +18,22 @@
         background-color: green;
     }
     :root {
-        --hexagon-height: 17vh;
+        --hexagon-height: 16vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
         --hexagon-gap: calc(var(--hexagon-width)/4);
         --hexagon-shift: calc(-1 * var(--hexagon-gap));
         --row-two-three-shift: calc((var(--hexagon-height)));
         --shift-up-down: 0vh;
-        /* --giant-hex-shift-vert: calc(-.4 * var(--hexagon-height)); */
+        --row-one-giant-hex-margin-top: 8.25vh;
+        --row-four-giant-hex-margin-bottom: 8.25vh;
         --row-one-margin-left: calc(2 * var(--hexagon-shift));
         --row-two-margin-right: calc(var(--hexagon-shift) - 3 * var(--hexagon-shift));
         --row-three-margin-right: calc(-1 * var(--hexagon-shift));
         --row-four-margin-right: calc(-1 * var(--hexagon-shift));
     }
-    .hexagon {
+    .hexagon, .row {
         min-width: var(--hexagon-width);
+        max-height: var(--hexagon-height);
     }
     .row.two .hexagon.giant-hex {
         display: none;
@@ -38,7 +41,10 @@
     .hexagon.hidden {
         display: none;
     }
-    .hexagon.ghost {
+    .hexagon.ghost, .img-containing-div.ghost {
+        display: none;
+    }
+    .img-containing-div.giant-hex {
         display: none;
     }
 }
@@ -63,7 +69,7 @@ h1 {
 }
 
 .buffer {
-    height: 100vh; /* Further increase buffer height to provide more scrolling space */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,17 +107,17 @@ h1 {
 }
 
 .hexagon {
-    width: var(--hexagon-width); /* Width of the hexagon */
-    height: var(--hexagon-height); /* Use the CSS variable for height */
+    width: var(--hexagon-width);
+    height: var(--hexagon-height);
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url('hexagon.svg');
-    background-repeat: no-repeat; /* Ensure the background doesn't repeat */
-    background-position: center center; /* Center the background image */
-    background-size: contain; /* Ensure the SVG scales properly */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
     position: relative;
-    z-index: 2; /* Ensure the hexagons are behind the fog overlay */
+    z-index: 2;
 }
 
 .giant-hex {
@@ -122,7 +128,7 @@ h1 {
 .row.one .giant-hex {
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: calc(2 * var(--shift-up-down));
+    margin-top: var(--row-one-giant-hex-margin-top);
 }
 
 .row.two .giant-hex {
@@ -134,7 +140,7 @@ h1 {
 .row.four .giant-hex {
     justify-content: flex-start;
     align-items: flex-start;
-    margin-bottom: calc(2 * var(--shift-up-down));
+    margin-bottom: var(--row-four-giant-hex-margin-bottom);
 }
 
 .giant-hex img {
@@ -179,10 +185,10 @@ h1 {
 }
 
 .img-containing-div img {
-    max-width: 100%; /* Adjust the width as needed */
+    max-width: 100%;
     height: auto;
     max-height: 100%;
-    z-index: 1; /* Ensure the image is on top of the background */
+    z-index: 1;
 }
 
 .row.one { 
@@ -203,6 +209,15 @@ h1 {
 .row.four { 
     bottom: calc(-1 * var(--shift-up-down));
     margin-right: var(--row-four-margin-right);
+}
+
+@media screen and (max-width: 1080px) {
+    .images-only .row.one {
+        margin-left: calc(var(--row-one-margin-left) + var(--hexagon-width) + var(--hexagon-gap));
+    }
+    .images-only .row.four {
+        margin-right: calc(var(--row-four-margin-right) + var(--hexagon-width) + var(--hexagon-gap));
+    }
 }
 
 .centered-container {
