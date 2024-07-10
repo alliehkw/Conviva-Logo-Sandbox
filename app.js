@@ -17,23 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const rowConfigurations = {
     one: {
-      startPositions: [-200, -120, -80, 50, 180],
+      startPositions: [-200, -120, -80, 0, 50, 180, 0],
       translateYDirection: -20,
     },
     two: {
-      startPositions: [-250, -60, 90, 140, 0],
+      startPositions: [0, -150, -60, -10, 0, 50, 100],
       translateYDirection: -20,
     },
-    // three: {
-    //   startPositions: [300],
-    //   translateYDirection: 0,
-    // },
     four: {
-      startPositions: [-150, -100, 80, 200, 0],
+      startPositions: [-150, -50, -10, 80, 100, 0, 0],
       translateYDirection: 20,
     },
     five: {
-      startPositions: [-100, -25, 50, 75, 200],
+      startPositions: [-100, -25, 0, -15, 80, 150],
       translateYDirection: 20,
     },
   };

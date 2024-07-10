@@ -89,12 +89,6 @@ h1 {
     margin-top: calc(-2 * var(--shift-up-down));
 }
 
-/* .row.three .giant-hex {
-    justify-content: unset;
-    align-items: unset;
-    margin-bottom: calc(2 * var(--shift-up-down));
-} */
-
 .row.five .giant-hex {
     justify-content: flex-start;
     align-items: flex-start;
@@ -102,34 +96,9 @@ h1 {
 }
 
 .giant-hex img {
-    width: calc(3 * var(--hexagon-width)); /* Width of the hexagon */
-    height: calc(3 * var(--hexagon-height)); /* Use the CSS variable for height */
+    width: calc(3 * var(--hexagon-width));
+    height: calc(3 * var(--hexagon-height));
 }
-
-/* .one.giant-hex {
-    justify-content: flex-end;
-}
-
-.one.giant-hex img {
-    margin-top: var(--giant-hex-shift-vert);
-} */
-
-/* .three .giant-hex.one img {
-    margin-top: calc(1.5 * var(--giant-hex-shift-vert));
-}
-
-.three .giant-hex.five img {
-    margin-bottom: calc(1.5 * var(--giant-hex-shift-vert));
-} */
-
-/* .five.giant-hex {
-    justify-content: flex-start;
-    align-items: flex-start;
-} */
-
-/* .five.giant-hex img {
-    margin-bottom: var(--giant-hex-shift-vert);
-} */
 
 .one .hexagon.ghost {
     background-image: url('hexagon-row-one.svg');
@@ -150,10 +119,6 @@ h1 {
 .hexagon.hidden {
     opacity: 0 !important;
 }
-
-/* .row.three .five.giant-hex {
-    margin-right: calc(-1/8 * (var(--hexagon-width)));
-} */
 
 .img-containing-div {
     width: var(--hexagon-width);
@@ -186,14 +151,6 @@ h1 {
 .row.two { 
     top: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
     margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
-}
-
-.row.three {
-    justify-content: flex-end;
-    top: 50vh;
-    transform: translateY(-50%) !important;
-    width: 100%;
-    margin-left: -3vw;
 }
 
 .row.four { 
