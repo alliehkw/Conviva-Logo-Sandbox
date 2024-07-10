@@ -14,9 +14,6 @@
 }
 
 @media screen and (max-width: 1080px) {
-    body {
-        background-color: green;
-    }
     :root {
         --hexagon-height: 16vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
@@ -24,8 +21,8 @@
         --hexagon-shift: calc(-1 * var(--hexagon-gap));
         --row-two-three-shift: calc((var(--hexagon-height)));
         --shift-up-down: 0vh;
-        --row-one-giant-hex-margin-top: 8.25vh;
-        --row-four-giant-hex-margin-bottom: 8.25vh;
+        --row-one-giant-hex-margin-top: calc(var(--hexagon-height)/2);
+        --row-four-giant-hex-margin-bottom: calc(var(--hexagon-height)/2);
         --row-one-margin-left: calc(2 * var(--hexagon-shift));
         --row-two-margin-right: calc(var(--hexagon-shift) - 3 * var(--hexagon-shift));
         --row-three-margin-right: calc(-1 * var(--hexagon-shift));
@@ -50,13 +47,8 @@
 }
 
 @media screen and (max-width: 480px) {
-    body {
-        background-color: red;
-    }
     :root {
         --hexagon-height: 10vh;
-        --row-one-giant-hex-margin-top: 5vh;
-        --row-four-giant-hex-margin-bottom: 5vh;
     }
 }
 
@@ -93,7 +85,7 @@ h1 {
     width: 100%;
     display: flex;
     justify-content: center;
-    opacity: 0; /* Hidden initially */
+    opacity: 0;
     overflow: visible;
     max-height: (var(--hexagon-height));
     gap: var(--hexagon-gap);
@@ -104,11 +96,11 @@ h1 {
 }
 
 .hexagons-only .row {
-    z-index: 1; /* Ensure hexagons are behind the images and fog overlay */
+    z-index: 1;
 }
 
 .images-only .row {
-    z-index: 10; /* Ensure images are in front of the fog overlay */
+    z-index: 10;
 }
 
 .hexagon {
@@ -206,6 +198,14 @@ h1 {
     margin-right: var(--row-two-margin-right);
 }
 
+.row.mobile-only-row {
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
 .row.three { 
     bottom: var(--row-two-three-shift);
     margin-right: var(--row-three-margin-right);
@@ -224,9 +224,6 @@ h1 {
         margin-right: calc(var(--row-four-margin-right) + var(--hexagon-width) + var(--hexagon-gap));
     }
 }
-
-/* @media screen and (max-width: 480px) {
-} */
 
 .centered-container {
     height: 350vh;
