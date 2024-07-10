@@ -46,7 +46,7 @@ h1 {
     gap: var(--hexagon-gap);
 }
 
-.row.five {
+.row.four {
     align-items: flex-end;
 }
 
@@ -89,7 +89,7 @@ h1 {
     margin-top: calc(-2 * var(--shift-up-down));
 }
 
-.row.five .giant-hex {
+.row.four .giant-hex {
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: calc(2 * var(--shift-up-down));
@@ -108,12 +108,12 @@ h1 {
     background-image: url('hexagon-row-two.svg');
 }
 
-.four .hexagon.ghost{
-    background-image: url('hexagon-row-four.svg');
+.three .hexagon.ghost{
+    background-image: url('hexagon-row-three.svg');
 }
 
-.five .hexagon.ghost {
-    background-image: url('hexagon-row-five.svg');
+.four .hexagon.ghost {
+    background-image: url('hexagon-row-four.svg');
 }
 
 .hexagon.hidden {
@@ -153,12 +153,12 @@ h1 {
     margin-right: calc(var(--hexagon-shift) - var(--hexagon-shift));
 }
 
-.row.four { 
+.row.three { 
     bottom: calc((var(--hexagon-height)) - (var(--hexagon-height)/3));
     margin-right: calc(3 * var(--hexagon-shift));
-    /* background-color: yellow; */
 }
-.row.five { 
+
+.row.four { 
     bottom: calc(-1 * var(--shift-up-down));
     margin-right: calc(2 * var(--hexagon-shift));
 }

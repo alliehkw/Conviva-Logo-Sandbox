@@ -24,11 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
       startPositions: [0, -150, -60, -10, 0, 50, 100],
       translateYDirection: -20,
     },
-    four: {
+    three: {
       startPositions: [-150, -50, -10, 80, 100, 0, 0],
       translateYDirection: 20,
     },
-    five: {
+    four: {
       startPositions: [-100, -25, 0, -15, 80, 150],
       translateYDirection: 20,
     },
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (rowPosition > 1) rowPosition = 1;
 
-    if (translateYDirection !== 0 || row.classList.contains("three")) {
+    if (translateYDirection !== 0) {
       if (
         scrollPosition >= translateInStart &&
         scrollPosition <= centeredContainerMiddle
@@ -203,10 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const centeredContainerMiddle =
       centeredContainerTop + centeredContainerRect.height / 2;
 
-    const rowFive = document.querySelector(".row.five");
-    const rowFiveBottom =
-      rowFive.getBoundingClientRect().bottom + window.scrollY;
-    const translateOutStart = rowFiveBottom - viewportHeight + bufferPeriod; // Add buffer period to translateOutStart
+    const rowFour = document.querySelector(".row.four");
+    const rowFourBottom =
+      rowFour.getBoundingClientRect().bottom + window.scrollY;
+    const translateOutStart = rowFourBottom - viewportHeight + bufferPeriod; // Add buffer period to translateOutStart
     const translateDistance =
       (centeredContainerMiddle - centeredContainerTop) / 2; // Halve the translate distance
     const stationaryEnd = centeredContainerMiddle + bufferPeriod; // Define the end of the stationary period
