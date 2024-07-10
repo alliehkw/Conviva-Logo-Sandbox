@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
       translateYDirection: -20,
     },
     "mobile-only-row": {
-      startPositions: [0, 0],
-      translateYDirection: 0,
+      startPositions: [-20, 20],
+      translateYDirection: 0.1,
     },
     three: {
       startPositions: [0, -50, 0, -10, 80, 100, 0],
@@ -156,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const config = rowConfigurations[rowClass];
 
       if (config) {
+        console.log(`Updating row: ${rowClass}`); // Add this line to log the row being updated
         updateRowPosition(
           row,
           scrollPosition,
