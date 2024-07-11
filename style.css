@@ -202,7 +202,7 @@ h1 {
     display: none;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 480px) {
     .row.mobile-only-row {
         top: 50%;
         transform: translateY(-50%) !important;
@@ -270,7 +270,13 @@ h1 {
     text-align: center;
     z-index: 10;
     height: fit-content;
-    width: 65%;
+    width: 58%;
+}
+
+@media screen and (max-width: 1080px) {
+    .centered {
+        width: 75%;
+    }
 }
 
 .centered > p {
@@ -278,7 +284,7 @@ h1 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.5rem;
+    font-size: 32px;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
