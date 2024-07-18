@@ -1,204 +1,121 @@
 document.addEventListener("DOMContentLoaded", function () {
   const centeredContainer = document.querySelector(".centered-container");
-  const rows = document.querySelectorAll(".row");
+  const hexagons = document.querySelectorAll(".hexagon");
+  const imageContainers = document.querySelectorAll(".img-containing-div");
   const centeredText = document.querySelector(".centered");
-  const fogOverlay = document.querySelector(".fog-overlay");
 
-  if (!centeredContainer || !rows.length || !centeredText || !fogOverlay) {
+  if (
+    !centeredContainer ||
+    !hexagons.length ||
+    !imageContainers.length ||
+    !centeredText
+  ) {
     console.error(
-      "Centered container, centered text, rows, or fog overlay not found"
+      "Centered container, centered text, hexagons, or image containers not found"
     );
     return;
   }
 
-  const viewportHeight = window.innerHeight;
-  const bufferPeriod = 0.25 * viewportHeight; // Define a 25vh buffer period
+  const parentDivHeight = centeredContainer.offsetHeight;
+  const transitionDistance = 0.35 * parentDivHeight; // 35% for transitioning in and out
+  const stationaryDistance = 0.05 * parentDivHeight; // 5% for stationary period
 
-  const rowConfigurations = {
-    one: {
-      startPositions: [-200, -120, -80, 0, 50, 180, 0],
-      translateYDirection: -20,
-    },
-    two: {
-      startPositions: [0, -150, -60, -10, 0, 50, 100],
-      translateYDirection: -20,
-    },
-    "mobile-only-row": {
-      startPositions: [-20, 20],
-      translateYDirection: 0.1,
-    },
-    three: {
-      startPositions: [0, -50, 0, -10, 80, 100, 0],
-      translateYDirection: 20,
-    },
-    four: {
-      startPositions: [-100, -25, 0, -15, 80, 150],
-      translateYDirection: 20,
-    },
+  const calculateOpacity = (scrollPosition, start, middle, end, afterEnd) => {
+    if (scrollPosition < start || scrollPosition > afterEnd) {
+      return 0;
+    } else if (scrollPosition >= start && scrollPosition < middle) {
+      return (scrollPosition - start) / transitionDistance;
+    } else if (scrollPosition >= middle && scrollPosition <= end) {
+      return 1;
+    } else if (scrollPosition > end && scrollPosition <= afterEnd) {
+      return 1 - (scrollPosition - end) / transitionDistance;
+    }
+    return 0;
   };
 
-  const updateRowPosition = (
-    row,
+  const calculateTranslation = (
     scrollPosition,
-    translateDistance,
-    centeredContainerTop,
-    centeredContainerMiddle,
-    stationaryEnd,
-    translateOutStart,
-    startPositions,
-    translateYDirection
+    start,
+    middle,
+    end,
+    afterEnd,
+    initialTranslate
   ) => {
-    const translateInStart = centeredContainerTop;
-    let rowPosition = (scrollPosition - translateInStart) / translateDistance;
-    let translateYValue;
-
-    if (rowPosition > 1) rowPosition = 1;
-
-    if (translateYDirection !== 0) {
-      if (
-        scrollPosition >= translateInStart &&
-        scrollPosition <= centeredContainerMiddle
-      ) {
-        // Translation in
-        translateYValue = (1 - rowPosition) * translateYDirection; // Start at the top or bottom of the screen
-        row.style.transform = `translate(0%, ${translateYValue}vh)`;
-        row.style.opacity = rowPosition;
-      } else if (
-        scrollPosition > centeredContainerMiddle &&
-        scrollPosition <= stationaryEnd
-      ) {
-        // Stationary period
-        row.style.transform = `translate(0%, 0vh)`;
-        row.style.opacity = 1;
-      } else if (
-        scrollPosition > stationaryEnd &&
-        scrollPosition <= translateOutStart
-      ) {
-        // Translation out
-        rowPosition = (scrollPosition - stationaryEnd) / translateDistance;
-        translateYValue = rowPosition * translateYDirection;
-        row.style.transform = `translate(0%, ${translateYValue}vh)`;
-        row.style.opacity = 1 - rowPosition;
-      } else if (scrollPosition < translateInStart) {
-        row.style.transform = `translate(0%, ${translateYDirection}vh)`; // Initial off-screen position
-        row.style.opacity = 0;
-      } else {
-        row.style.transform = `translate(0%, ${translateYDirection}vh)`; // Initial off-screen position
-        row.style.opacity = 0;
-      }
+    if (scrollPosition < start) {
+      return initialTranslate;
+    } else if (scrollPosition >= start && scrollPosition < middle) {
+      return (
+        initialTranslate * (1 - (scrollPosition - start) / transitionDistance)
+      );
+    } else if (scrollPosition >= middle && scrollPosition <= end) {
+      return 0;
+    } else if (scrollPosition > end && scrollPosition <= afterEnd) {
+      return (initialTranslate * (scrollPosition - end)) / transitionDistance;
     }
-
-    const elements = row.querySelectorAll(".hexagon, .img-containing-div");
-    elements.forEach((element, index) => {
-      let elementPosition =
-        (scrollPosition - translateInStart) / translateDistance;
-      let translateXValue;
-
-      translateXValue = (1 - elementPosition) * startPositions[index];
-      if (startPositions[index] < 0) {
-        translateXValue = Math.min(0, translateXValue); // Clamp translateXValue to a maximum of 0
-      } else {
-        translateXValue = Math.max(0, translateXValue); // Clamp translateXValue to a minimum of 0
-      }
-
-      if (elementPosition > 1) elementPosition = 1;
-
-      if (
-        scrollPosition >= translateInStart &&
-        scrollPosition <= centeredContainerMiddle
-      ) {
-        // Translation in
-        element.style.transform = `translate(${translateXValue}%, 0)`;
-        element.style.opacity = elementPosition;
-      } else if (
-        scrollPosition > centeredContainerMiddle &&
-        scrollPosition <= stationaryEnd
-      ) {
-        // Stationary period
-        element.style.transform = `translate(0%, 0)`;
-        element.style.opacity = 1;
-      } else if (
-        scrollPosition > stationaryEnd &&
-        scrollPosition <= translateOutStart
-      ) {
-        // Translation out
-        elementPosition = (scrollPosition - stationaryEnd) / translateDistance;
-        translateXValue = elementPosition * startPositions[index];
-        element.style.transform = `translate(${translateXValue}%, 0)`;
-        element.style.opacity = 1 - elementPosition;
-      } else if (scrollPosition < translateInStart) {
-        element.style.transform = `translate(${startPositions[index]}%, 0)`;
-        element.style.opacity = 0;
-      } else {
-        element.style.transform = `translate(${startPositions[index]}%, 0)`;
-        element.style.opacity = 0;
-      }
-    });
+    return initialTranslate;
   };
 
-  const updateRowPositions = () => {
+  const updateElementTransformations = () => {
     const scrollPosition = window.scrollY;
-    const centeredContainerRect = centeredContainer.getBoundingClientRect();
-    const centeredContainerTop = centeredContainerRect.top + window.scrollY;
-    const centeredContainerMiddle =
-      centeredContainerTop + centeredContainerRect.height / 2;
+    const centeredRect = centeredContainer.getBoundingClientRect();
+    const centeredTop = centeredRect.top + window.scrollY;
+    const centeredMiddle = centeredTop + centeredRect.height / 2;
+    const start = centeredMiddle - parentDivHeight / 2;
+    const middle = centeredMiddle;
+    const end = middle + stationaryDistance;
+    const afterEnd = end + transitionDistance;
 
-    const rowFour = document.querySelector(".row.four");
-    const rowFourBottom =
-      rowFour.getBoundingClientRect().bottom + window.scrollY;
-    const translateOutStart = rowFourBottom - viewportHeight + bufferPeriod; // Add buffer period to translateOutStart
-    const translateDistance =
-      (centeredContainerMiddle - centeredContainerTop) / 2; // Halve the translate distance
-    const stationaryEnd = centeredContainerMiddle + bufferPeriod; // Define the end of the stationary period
+    const updateTransform = (element) => {
+      let opacity = calculateOpacity(
+        scrollPosition,
+        start,
+        middle,
+        end,
+        afterEnd
+      );
+      opacity = Math.max(0, Math.min(1, opacity)); // Ensure opacity is between 0 and 1
 
-    rows.forEach((row) => {
-      const rowClass = row.classList[1]; // Assuming the row class is always the second class
-      const config = rowConfigurations[rowClass];
+      const initialTranslateY = parseFloat(
+        getComputedStyle(element).getPropertyValue("--initial-translate-y")
+      );
+      const initialTranslateX = parseFloat(
+        getComputedStyle(element).getPropertyValue("--initial-translate-x")
+      );
+      let translateY = calculateTranslation(
+        scrollPosition,
+        start,
+        middle,
+        end,
+        afterEnd,
+        initialTranslateY
+      );
+      let translateX = calculateTranslation(
+        scrollPosition,
+        start,
+        middle,
+        end,
+        afterEnd,
+        initialTranslateX
+      );
 
-      if (config) {
-        console.log(`Updating row: ${rowClass}`); // Add this line to log the row being updated
-        updateRowPosition(
-          row,
-          scrollPosition,
-          translateDistance,
-          centeredContainerTop,
-          centeredContainerMiddle,
-          stationaryEnd,
-          translateOutStart,
-          config.startPositions,
-          config.translateYDirection
-        );
-      }
-    });
+      translateY =
+        initialTranslateY < 0
+          ? Math.min(Math.max(initialTranslateY, translateY), 0) // Clamp for top elements
+          : Math.max(Math.min(initialTranslateY, translateY), 0); // Clamp for bottom elements
 
-    // Ensure centered text remains sticky long enough
-    if (scrollPosition <= translateOutStart) {
-      centeredText.style.position = "sticky";
-      centeredText.style.top = "50%";
-      centeredText.style.transform = "translateY(-50%)";
-    } else {
-      centeredText.style.position = "static";
-      centeredText.style.transform = "none";
-    }
+      translateX =
+        initialTranslateX < 0
+          ? Math.min(Math.max(initialTranslateX, translateX), 0) // Clamp for left elements
+          : Math.max(Math.min(initialTranslateX, translateX), 0); // Clamp for right elements
 
-    // Update fog overlay opacity
-    if (
-      scrollPosition < centeredContainerTop ||
-      scrollPosition > translateOutStart
-    ) {
-      fogOverlay.style.opacity = 0;
-    } else if (
-      scrollPosition >= centeredContainerTop &&
-      scrollPosition <= stationaryEnd
-    ) {
-      fogOverlay.style.opacity = 1;
-    } else {
-      const fadeOutPosition =
-        (scrollPosition - stationaryEnd) / translateDistance;
-      fogOverlay.style.opacity = 1 - fadeOutPosition;
-    }
+      element.style.opacity = opacity;
+      element.style.transform = `translate(${translateX}vw, ${translateY}vh)`; // Adjust the transformation direction if needed
+    };
+
+    hexagons.forEach((element) => updateTransform(element));
+    imageContainers.forEach((element) => updateTransform(element));
   };
 
-  window.addEventListener("scroll", updateRowPositions);
-  updateRowPositions(); // Initial call
+  window.addEventListener("scroll", updateElementTransformations);
+  updateElementTransformations(); // Initial call
 });
