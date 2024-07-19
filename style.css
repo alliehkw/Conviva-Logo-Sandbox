@@ -29,257 +29,1028 @@ body {
     overflow: initial !important;
 }
 
-:root {
-    --hexagon-height: 25vh;
-    --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
-    --hexagon-gap: calc(var(--hexagon-width) / 7);
-    --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
-    --text-width: 53%;
-    --font-size: 1.5rem;
-    --el-1-top: 10vh;
-    --el-1-left: 6vw;
-    --el-2-top: 20vh;
-    --el-2-left: 25vw;
-    --el-3-top: 0vh;
-    --el-3-left: 40vw;
-    --el-4-top: 10vh;
-    --el-4-right: 30vw;
-    --el-5-top: 2vh;
-    --el-5-right: 10vw;
-    --el-6-top: 40vh;
-    --el-6-right: 13vw;
-    --el-7-top: 35vh;
-    --el-7-right: -5vw;
-    --el-8-bottom: 0vh;
-    --el-8-right: 0vw;
-    --el-9-bottom: 12vh;
-    --el-9-right: 25vw;
-    --el-10-bottom: 10vh;
-    --el-10-right: 10vw;
-    --el-11-bottom: -8vh;
-    --el-11-right: 40vw;
-    --el-12-bottom: 10vh;
-    --el-12-left: 33vw;
-    --el-13-bottom: -10vh;
-    --el-13-left: 15vw;
-    --el-14-bottom: -5vh;
-    --el-14-left: -5vw;
-    --el-15-bottom: 25vh;
-    --el-15-left: 18vw;
-    --el-16-bottom: 35vh;
-    --el-16-left: 0vw;
-    /* starting positions for each element in y */
-    --el-1-start-y: -40vh;
-    --el-2-start-y: -20vh;
-    --el-3-start-y: -20vh;
-    --el-4-start-y: -25vh;
-    --el-5-start-y: -20vh;
-    --el-6-start-y: -25vh;
-    --el-7-start-y: 20vh;
-    --el-8-start-y: 0vh;
-    --el-9-start-y: 30vh;
-    --el-10-start-y: 35vh;
-    --el-11-start-y: 22vh;
-    --el-12-start-y: 30vh;
-    --el-13-start-y: 30vh;
-    --el-14-start-y: 50vh;
-    --el-15-start-y: 30vh;
-    --el-16-start-y: 0vh;
-    /* starting positions for each element in x */
-    --el-1-start-x: -60vw;
-    --el-2-start-x: -20vw;
-    --el-3-start-x: -15vw;
-    --el-4-start-x: 0vw;
-    --el-5-start-x: 0vw;
-    --el-6-start-x: 17vw;
-    --el-7-start-x: 10vw;
-    --el-8-start-x: 20vw;
-    --el-9-start-x: 10vw;
-    --el-10-start-x: 20vw;
-    --el-11-start-x: 3vw;
-    --el-12-start-x: -5vw;
-    --el-13-start-x: -10vw;
-    --el-14-start-x: -30vw;
-    --el-15-start-x: -10vw;
-    --el-16-start-x: -25vw;
-    /* initial rotation angles for each element */
-    --el-1-rotate: -30deg;
-    --el-2-rotate: -45deg;
-    --el-3-rotate: 0deg;
-    --el-4-rotate: 30deg;
-    --el-5-rotate: 45deg;
-    --el-6-rotate: 30deg;
-    --el-7-rotate: 60deg;
-    --el-8-rotate: 45deg;
-    --el-9-rotate: 60deg;
-    --el-10-rotate: 30deg;
-    --el-11-rotate: 40deg;
-    --el-12-rotate: -60deg;
-    --el-13-rotate: -30deg;
-    --el-14-rotate: -45deg;
-    --el-15-rotate: -60deg;
-    --el-16-rotate: -30deg;
-    /* growth factors for each element */
-    --el-1-gf: 1;
-    --el-2-gf: 0.68;
-    --el-3-gf: 1;
-    --el-4-gf: 1;
-    --el-5-gf: 1.23;
-    --el-6-gf: 0.68;
-    --el-7-gf: 1.23;
-    --el-8-gf: 0.53;
-    --el-9-gf: 0.68;
-    --el-10-gf: 1;
-    --el-11-gf: 1.12;
-    --el-12-gf: 1;
-    --el-13-gf: 1.23;
-    --el-14-gf: 1;
-    --el-15-gf: 0.68;
-    --el-16-gf: 1.23;
+@media screen and (min-width: 1281px) {
+    :root {
+        --hexagon-height: 25vh;
+        --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+        --hexagon-gap: calc(var(--hexagon-width) / 7);
+        --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+        --text-width: 40%;
+        --font-size: 1.75rem;
+        --hex-max-height: 15vw;
+        --el-1-top: 10vh;
+        --el-1-left: 6vw;
+        --el-2-top: 20vh;
+        --el-2-left: 25vw;
+        --el-3-top: 0vh;
+        --el-3-left: 40vw;
+        --el-4-top: 10vh;
+        --el-4-right: 30vw;
+        --el-5-top: 2vh;
+        --el-5-right: 10vw;
+        --el-6-top: 40vh;
+        --el-6-right: 13vw;
+        --el-7-top: 35vh;
+        --el-7-right: -5vw;
+        --el-8-bottom: 0vh;
+        --el-8-right: 0vw;
+        --el-9-bottom: 12vh;
+        --el-9-right: 25vw;
+        --el-10-bottom: 11vh;
+        --el-10-right: 8vw;
+        --el-11-bottom: -8vh;
+        --el-11-right: 40vw;
+        --el-12-bottom: 10vh;
+        --el-12-left: 33vw;
+        --el-13-bottom: -10vh;
+        --el-13-left: 15vw;
+        --el-14-bottom: -5vh;
+        --el-14-left: -5vw;
+        --el-15-bottom: 25vh;
+        --el-15-left: 18vw;
+        --el-16-bottom: 35vh;
+        --el-16-left: 0vw;
+
+        --el-1-start-y: -40vh;
+        --el-2-start-y: -20vh;
+        --el-3-start-y: -20vh;
+        --el-4-start-y: -25vh;
+        --el-5-start-y: -20vh;
+        --el-6-start-y: -25vh;
+        --el-7-start-y: 20vh;
+        --el-8-start-y: 0vh;
+        --el-9-start-y: 30vh;
+        --el-10-start-y: 35vh;
+        --el-11-start-y: 22vh;
+        --el-12-start-y: 30vh;
+        --el-13-start-y: 30vh;
+        --el-14-start-y: 50vh;
+        --el-15-start-y: 30vh;
+        --el-16-start-y: 0vh;
+
+        --el-1-start-x: -60vw;
+        --el-2-start-x: -20vw;
+        --el-3-start-x: -15vw;
+        --el-4-start-x: 0vw;
+        --el-5-start-x: 0vw;
+        --el-6-start-x: 17vw;
+        --el-7-start-x: 10vw;
+        --el-8-start-x: 20vw;
+        --el-9-start-x: 10vw;
+        --el-10-start-x: 20vw;
+        --el-11-start-x: 3vw;
+        --el-12-start-x: -5vw;
+        --el-13-start-x: -10vw;
+        --el-14-start-x: -30vw;
+        --el-15-start-x: -10vw;
+        --el-16-start-x: -25vw;
+
+        --el-1-rotate: -30deg;
+        --el-2-rotate: -45deg;
+        --el-3-rotate: 0deg;
+        --el-4-rotate: 30deg;
+        --el-5-rotate: 45deg;
+        --el-6-rotate: 30deg;
+        --el-7-rotate: 60deg;
+        --el-8-rotate: 45deg;
+        --el-9-rotate: 60deg;
+        --el-10-rotate: 30deg;
+        --el-11-rotate: 40deg;
+        --el-12-rotate: -60deg;
+        --el-13-rotate: -30deg;
+        --el-14-rotate: -45deg;
+        --el-15-rotate: -60deg;
+        --el-16-rotate: -30deg;
+
+        --el-1-gf: 1;
+        --el-2-gf: 0.68;
+        --el-3-gf: 1;
+        --el-4-gf: 1;
+        --el-5-gf: 1.23;
+        --el-6-gf: 0.68;
+        --el-7-gf: 1.23;
+        --el-8-gf: 0.53;
+        --el-9-gf: 0.68;
+        --el-10-gf: 1;
+        --el-11-gf: 1.12;
+        --el-12-gf: 1;
+        --el-13-gf: 1.23;
+        --el-14-gf: 1;
+        --el-15-gf: 0.68;
+        --el-16-gf: 1.23;
+    } 
+
+    .el-1 {
+        top: var(--el-1-top);
+        left: var(--el-1-left);
+        --initial-translate-y: var(--el-1-start-y);
+        --initial-translate-x: var(--el-1-start-x);
+        --initial-rotate: var(--el-1-rotate);
+        --el-gf: var(--el-1-gf);
+    }
+
+    .el-2 {
+        top: var(--el-2-top);
+        left: var(--el-2-left);
+        --initial-translate-y: var(--el-2-start-y);
+        --initial-translate-x: var(--el-2-start-x);
+        --initial-rotate: var(--el-2-rotate);
+        --el-gf: var(--el-2-gf);
+    }
+
+    .el-3 {
+        top: var(--el-3-top);
+        left: var(--el-3-left);
+        --initial-translate-y: var(--el-3-start-y);
+        --initial-translate-x: var(--el-3-start-x);
+        --initial-rotate: var(--el-3-rotate);
+        --el-gf: var(--el-3-gf);
+    }
+
+    .el-4 {
+        top: var(--el-4-top);
+        right: var(--el-4-right);
+        --initial-translate-y: var(--el-4-start-y);
+        --initial-translate-x: var(--el-4-start-x);
+        --initial-rotate: var(--el-4-rotate);
+        --el-gf: var(--el-4-gf);
+    }
+
+    .el-5 {
+        top: var(--el-5-top);
+        right: var(--el-5-right);
+        --initial-translate-y: var(--el-5-start-y);
+        --initial-translate-x: var(--el-5-start-x);
+        --initial-rotate: var(--el-5-rotate);
+        --el-gf: var(--el-5-gf);
+    }
+
+    .el-6 {
+        top: var(--el-6-top);
+        right: var(--el-6-right);
+        --initial-translate-y: var(--el-6-start-y);
+        --initial-translate-x: var(--el-6-start-x);
+        --initial-rotate: var(--el-6-rotate);
+        --el-gf: var(--el-6-gf);
+    }
+
+    .el-7 {
+        top: var(--el-7-top);
+        right: var(--el-7-right);
+        --initial-translate-y: var(--el-7-start-y);
+        --initial-translate-x: var(--el-7-start-x);
+        --initial-rotate: var(--el-7-rotate);
+        --el-gf: var(--el-7-gf);
+    }
+
+    .el-8 {
+        bottom: var(--el-8-bottom);
+        right: var(--el-8-right);
+        --initial-translate-y: var(--el-8-start-y);
+        --initial-translate-x: var(--el-8-start-x);
+        --initial-rotate: var(--el-8-rotate);
+        --el-gf: var(--el-8-gf);
+    }
+
+    .el-9 {
+        bottom: var(--el-9-bottom);
+        right: var(--el-9-right);
+        --initial-translate-y: var(--el-9-start-y);
+        --initial-translate-x: var(--el-9-start-x);
+        --initial-rotate: var(--el-9-rotate);
+        --el-gf: var(--el-9-gf);
+    }
+
+    .el-10 {
+        bottom: var(--el-10-bottom);
+        right: var(--el-10-right);
+        --initial-translate-y: var(--el-10-start-y);
+        --initial-translate-x: var(--el-10-start-x);
+        --initial-rotate: var(--el-10-rotate);
+        --el-gf: var(--el-10-gf);
+    }
+
+    .el-11 {
+        bottom: var(--el-11-bottom);
+        right: var(--el-11-right);
+        --initial-translate-y: var(--el-11-start-y);
+        --initial-translate-x: var(--el-11-start-x);
+        --initial-rotate: var(--el-11-rotate);
+        --el-gf: var(--el-11-gf);
+    }
+
+    .el-12 {
+        bottom: var(--el-12-bottom);
+        left: var(--el-12-left);
+        --initial-translate-y: var(--el-12-start-y);
+        --initial-translate-x: var(--el-12-start-x);
+        --initial-rotate: var(--el-12-rotate);
+        --el-gf: var(--el-12-gf);
+    }
+
+    .el-13 {
+        bottom: var(--el-13-bottom);
+        left: var(--el-13-left);
+        --initial-translate-y: var(--el-13-start-y);
+        --initial-translate-x: var(--el-13-start-x);
+        --initial-rotate: var(--el-13-rotate);
+        --el-gf: var(--el-13-gf);
+    }
+
+    .el-14 {
+        bottom: var(--el-14-bottom);
+        left: var(--el-14-left);
+        --initial-translate-y: var(--el-14-start-y);
+        --initial-translate-x: var(--el-14-start-x);
+        --initial-rotate: var(--el-14-rotate);
+        --el-gf: var(--el-14-gf);
+    }
+
+    .el-15 {
+        bottom: var(--el-15-bottom);
+        left: var(--el-15-left);
+        --initial-translate-y: var(--el-15-start-y);
+        --initial-translate-x: var(--el-15-start-x);
+        --initial-rotate: var(--el-15-rotate);
+        --el-gf: var(--el-15-gf);
+    }
+
+    .el-16 {
+        bottom: var(--el-16-bottom);
+        left: var(--el-16-left);
+        --initial-translate-y: var(--el-16-start-y);
+        --initial-translate-x: var(--el-16-start-x);
+        --initial-rotate: var(--el-16-rotate);
+        --el-gf: var(--el-16-gf);
+    }
 }
 
-.el-1 {
-    top: var(--el-1-top);
-    left: var(--el-1-left);
-    --initial-translate-y: var(--el-1-start-y);
-    --initial-translate-x: var(--el-1-start-x);
-    --initial-rotate: var(--el-1-rotate);
-    --el-gf: var(--el-1-gf);
+@media screen and (max-width: 1280px) {
+    :root {
+        --hexagon-height: 18vh;
+        --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+        --hexagon-gap: calc(var(--hexagon-width) / 7);
+        --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+        --text-width: 40%;
+        --font-size: 1.5rem;
+        --hex-max-height: 18vw;
+        --el-1-top: 1vh;
+        --el-1-left: 10vw;
+        --el-2-top: 5vh;
+        --el-2-left: calc(50vw - ((var(--hexagon-width) * var(--el-2-gf)) / 2));
+        --el-3-top: var(--el-1-top);
+        --el-3-right: var(--el-1-left);
+        --el-4-top: 24vh;
+        --el-4-left: 20vw;
+        --el-5-top: 20vh;
+        --el-5-left: calc(50vw - ((var(--hexagon-width) * var(--el-5-gf)) / 2));
+        --el-6-top: var(--el-4-top);
+        --el-6-right: var(--el-4-left);
+        --el-7-top: 30vh;
+        --el-7-left: -2vw;
+        --el-8-top: var(--el-7-top);
+        --el-8-right: var(--el-7-left);
+        --el-9-bottom: var(--el-7-top);
+        --el-9-left: var(--el-7-left);
+        --el-10-bottom: var(--el-9-bottom);
+        --el-10-right: var(--el-9-left);
+        --el-11-bottom: var(--el-5-top);
+        --el-11-left: var(--el-5-left);
+        --el-12-bottom: var(--el-4-top);
+        --el-12-left: var(--el-4-left);
+        --el-13-bottom: var(--el-12-bottom);
+        --el-13-right: var(--el-12-left);
+        --el-14-bottom: var(--el-2-top);
+        --el-14-left: var(--el-2-left);
+        --el-15-bottom: var(--el-1-top);
+        --el-15-left: var(--el-1-left);
+        --el-16-bottom: var(--el-3-top);
+        --el-16-right: var(--el-3-right);
+        
+        --el-1-start-y: -20vh;
+        --el-2-start-y: -30vh;
+        --el-3-start-y: var(--el-1-start-y);
+        --el-4-start-y: -20vh;
+        --el-5-start-y: -20vh;
+        --el-6-start-y: var(--el-5-start-y);
+        --el-7-start-y: 0vh;
+        --el-8-start-y: var(--el-7-start-y);
+        --el-9-start-y: 0vh;
+        --el-10-start-y: var(--el-9-start-y);
+        --el-11-start-y: 20vh;
+        --el-12-start-y: 20vh;
+        --el-13-start-y: var(--el-12-start-y);
+        --el-14-start-y: 50vh;
+        --el-15-start-y: 20vh;
+        --el-16-start-y: var(--el-15-start-y);
+        
+        --el-1-start-x: -30vw;
+        --el-2-start-x: 0vw;
+        --el-3-start-x: 30vw;
+        --el-4-start-x: -45vw;
+        --el-5-start-x: 0vw;
+        --el-6-start-x: 45vw;
+        --el-7-start-x: -20vw;
+        --el-8-start-x: 20vw;
+        --el-9-start-x: -20vw;
+        --el-10-start-x: 20vw;
+        --el-11-start-x: 0vw;
+        --el-12-start-x: -45vw;
+        --el-13-start-x: 45vw;
+        --el-14-start-x: 0vw;
+        --el-15-start-x: -30vw;
+        --el-16-start-x: 30vw;
+        
+        --el-1-rotate: -60deg;
+        --el-2-rotate: 0deg;
+        --el-3-rotate: 60deg;
+        --el-4-rotate: -30deg;
+        --el-5-rotate: 0deg;
+        --el-6-rotate: 30deg;
+        --el-7-rotate: -30deg;
+        --el-8-rotate: 30deg;
+        --el-9-rotate: 30deg;
+        --el-10-rotate: -30deg;
+        --el-11-rotate: 0deg;
+        --el-12-rotate: 30deg;
+        --el-13-rotate: -30deg;
+        --el-14-rotate: -30deg;
+        --el-15-rotate: -60deg;
+        --el-16-rotate: 60deg;
+        
+        --el-1-gf: 1.3;
+        --el-2-gf: 0.68;
+        --el-3-gf: var(--el-1-gf);
+        --el-4-gf: 0.68;
+        --el-5-gf: 1;
+        --el-6-gf: var(--el-4-gf);
+        --el-7-gf: 1;
+        --el-8-gf: var(--el-7-gf);
+        --el-9-gf: var(--el-7-gf);
+        --el-10-gf: var(--el-7-gf);
+        --el-11-gf: var(--el-5-gf);
+        --el-12-gf: var(--el-4-gf);
+        --el-13-gf: var(--el-12-gf);
+        --el-14-gf: var(--el-2-gf);
+        --el-15-gf: var(--el-1-gf);
+        --el-16-gf: var(--el-15-gf);
+    }
+
+    .el-1 {
+        top: var(--el-1-top);
+        left: var(--el-1-left);
+        --initial-translate-y: var(--el-1-start-y);
+        --initial-translate-x: var(--el-1-start-x);
+        --initial-rotate: var(--el-1-rotate);
+        --el-gf: var(--el-1-gf);
+    }
+    
+    .el-2 {
+        top: var(--el-2-top);
+        left: var(--el-2-left);
+        --initial-translate-y: var(--el-2-start-y);
+        --initial-translate-x: var(--el-2-start-x);
+        --initial-rotate: var(--el-2-rotate);
+        --el-gf: var(--el-2-gf);
+    }
+    
+    .el-3 {
+        top: var(--el-3-top);
+        right: var(--el-3-right);
+        --initial-translate-y: var(--el-3-start-y);
+        --initial-translate-x: var(--el-3-start-x);
+        --initial-rotate: var(--el-3-rotate);
+        --el-gf: var(--el-3-gf);
+    }
+    
+    .el-4 {
+        top: var(--el-4-top);
+        left: var(--el-4-left);
+        --initial-translate-y: var(--el-4-start-y);
+        --initial-translate-x: var(--el-4-start-x);
+        --initial-rotate: var(--el-4-rotate);
+        --el-gf: var(--el-4-gf);
+    }
+    
+    .el-5 {
+        top: var(--el-5-top);
+        left: var(--el-5-left);
+        --initial-translate-y: var(--el-5-start-y);
+        --initial-translate-x: var(--el-5-start-x);
+        --initial-rotate: var(--el-5-rotate);
+        --el-gf: var(--el-5-gf);
+    }
+    
+    .el-6 {
+        top: var(--el-6-top);
+        right: var(--el-6-right);
+        --initial-translate-y: var(--el-6-start-y);
+        --initial-translate-x: var(--el-6-start-x);
+        --initial-rotate: var(--el-6-rotate);
+        --el-gf: var(--el-6-gf);
+    }
+    
+    .el-7 {
+        top: var(--el-7-top);
+        left: var(--el-7-left);
+        --initial-translate-y: var(--el-7-start-y);
+        --initial-translate-x: var(--el-7-start-x);
+        --initial-rotate: var(--el-7-rotate);
+        --el-gf: var(--el-7-gf);
+    }
+    
+    .el-8 {
+        top: var(--el-8-top);
+        right: var(--el-8-right);
+        --initial-translate-y: var(--el-8-start-y);
+        --initial-translate-x: var(--el-8-start-x);
+        --initial-rotate: var(--el-8-rotate);
+        --el-gf: var(--el-8-gf);
+    }
+    
+    .el-9 {
+        bottom: var(--el-9-bottom);
+        left: var(--el-9-left);
+        --initial-translate-y: var(--el-9-start-y);
+        --initial-translate-x: var(--el-9-start-x);
+        --initial-rotate: var(--el-9-rotate);
+        --el-gf: var(--el-9-gf);
+    }
+    
+    .el-10 {
+        bottom: var(--el-10-bottom);
+        right: var(--el-10-right);
+        --initial-translate-y: var(--el-10-start-y);
+        --initial-translate-x: var(--el-10-start-x);
+        --initial-rotate: var(--el-10-rotate);
+        --el-gf: var(--el-10-gf);
+    }
+    
+    .el-11 {
+        bottom: var(--el-11-bottom);
+        left: var(--el-11-left);
+        --initial-translate-y: var(--el-11-start-y);
+        --initial-translate-x: var(--el-11-start-x);
+        --initial-rotate: var(--el-11-rotate);
+        --el-gf: var(--el-11-gf);
+    }
+    
+    .el-12 {
+        bottom: var(--el-12-bottom);
+        left: var(--el-12-left);
+        --initial-translate-y: var(--el-12-start-y);
+        --initial-translate-x: var(--el-12-start-x);
+        --initial-rotate: var(--el-12-rotate);
+        --el-gf: var(--el-12-gf);
+    }
+    
+    .el-13 {
+        bottom: var(--el-13-bottom);
+        right: var(--el-13-right);
+        --initial-translate-y: var(--el-13-start-y);
+        --initial-translate-x: var(--el-13-start-x);
+        --initial-rotate: var(--el-13-rotate);
+        --el-gf: var(--el-13-gf);
+    }
+    
+    .el-14 {
+        bottom: var(--el-14-bottom);
+        left: var(--el-14-left);
+        --initial-translate-y: var(--el-14-start-y);
+        --initial-translate-x: var(--el-14-start-x);
+        --initial-rotate: var(--el-14-rotate);
+        --el-gf: var(--el-14-gf);
+    }
+    
+    .el-15 {
+        bottom: var(--el-15-bottom);
+        left: var(--el-15-left);
+        --initial-translate-y: var(--el-15-start-y);
+        --initial-translate-x: var(--el-15-start-x);
+        --initial-rotate: var(--el-15-rotate);
+        --el-gf: var(--el-15-gf);
+    }
+    
+    .el-16 {
+        bottom: var(--el-16-bottom);
+        right: var(--el-16-right);
+        --initial-translate-y: var(--el-16-start-y);
+        --initial-translate-x: var(--el-16-start-x);
+        --initial-rotate: var(--el-16-rotate);
+        --el-gf: var(--el-16-gf);
+    }
 }
 
-.el-2 {
-    top: var(--el-2-top);
-    left: var(--el-2-left);
-    --initial-translate-y: var(--el-2-start-y);
-    --initial-translate-x: var(--el-2-start-x);
-    --initial-rotate: var(--el-2-rotate);
-    --el-gf: var(--el-2-gf);
+@media screen and (max-width: 1080px) {
+    :root {
+        --hexagon-height: 18vh;
+        --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+        --hexagon-gap: calc(var(--hexagon-width) / 7);
+        --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+        --text-width: 40%;
+        --font-size: 1.5rem;
+        --hex-max-height: 18vw;
+        --el-1-top: 1vh;
+        --el-1-left: 10vw;
+        --el-2-top: 4vh;
+        --el-2-left: calc(50vw - ((var(--hexagon-width) * var(--el-2-gf)) / 2));
+        --el-3-top: var(--el-1-top);
+        --el-3-right: var(--el-1-left);
+        --el-4-top: 23vh;
+        --el-4-left: 15vw;
+        --el-5-top: 18vh;
+        --el-5-left: calc(50vw - ((var(--hexagon-width) * var(--el-5-gf)) / 2));
+        --el-6-top: var(--el-4-top);
+        --el-6-right: var(--el-4-left);
+        --el-7-top: 30vh;
+        --el-7-left: -2vw;
+        --el-8-top: var(--el-7-top);
+        --el-8-right: var(--el-7-left);
+        --el-9-bottom: var(--el-7-top);
+        --el-9-left: var(--el-7-left);
+        --el-10-bottom: var(--el-9-bottom);
+        --el-10-right: var(--el-9-left);
+        --el-11-bottom: var(--el-5-top);
+        --el-11-left: var(--el-5-left);
+        --el-12-bottom: var(--el-4-top);
+        --el-12-left: var(--el-4-left);
+        --el-13-bottom: var(--el-12-bottom);
+        --el-13-right: var(--el-12-left);
+        --el-14-bottom: var(--el-2-top);
+        --el-14-left: var(--el-2-left);
+        --el-15-bottom: var(--el-1-top);
+        --el-15-left: var(--el-1-left);
+        --el-16-bottom: var(--el-3-top);
+        --el-16-right: var(--el-3-right);
+        
+        --el-1-start-y: -20vh;
+        --el-2-start-y: -30vh;
+        --el-3-start-y: var(--el-1-start-y);
+        --el-4-start-y: -20vh;
+        --el-5-start-y: -20vh;
+        --el-6-start-y: var(--el-5-start-y);
+        --el-7-start-y: 0vh;
+        --el-8-start-y: var(--el-7-start-y);
+        --el-9-start-y: 0vh;
+        --el-10-start-y: var(--el-9-start-y);
+        --el-11-start-y: 20vh;
+        --el-12-start-y: 20vh;
+        --el-13-start-y: var(--el-12-start-y);
+        --el-14-start-y: 50vh;
+        --el-15-start-y: 20vh;
+        --el-16-start-y: var(--el-15-start-y);
+        
+        --el-1-start-x: -30vw;
+        --el-2-start-x: 0vw;
+        --el-3-start-x: 30vw;
+        --el-4-start-x: -45vw;
+        --el-5-start-x: 0vw;
+        --el-6-start-x: 45vw;
+        --el-7-start-x: -20vw;
+        --el-8-start-x: 20vw;
+        --el-9-start-x: -20vw;
+        --el-10-start-x: 20vw;
+        --el-11-start-x: 0vw;
+        --el-12-start-x: -45vw;
+        --el-13-start-x: 45vw;
+        --el-14-start-x: 0vw;
+        --el-15-start-x: -30vw;
+        --el-16-start-x: 30vw;
+        
+        --el-1-rotate: -60deg;
+        --el-2-rotate: 0deg;
+        --el-3-rotate: 60deg;
+        --el-4-rotate: -30deg;
+        --el-5-rotate: 0deg;
+        --el-6-rotate: 30deg;
+        --el-7-rotate: -30deg;
+        --el-8-rotate: 30deg;
+        --el-9-rotate: 30deg;
+        --el-10-rotate: -30deg;
+        --el-11-rotate: 0deg;
+        --el-12-rotate: 30deg;
+        --el-13-rotate: -30deg;
+        --el-14-rotate: -30deg;
+        --el-15-rotate: -60deg;
+        --el-16-rotate: 60deg;
+        
+        --el-1-gf: 1.3;
+        --el-2-gf: 0.68;
+        --el-3-gf: var(--el-1-gf);
+        --el-4-gf: 0.68;
+        --el-5-gf: 1;
+        --el-6-gf: var(--el-4-gf);
+        --el-7-gf: 1;
+        --el-8-gf: var(--el-7-gf);
+        --el-9-gf: var(--el-7-gf);
+        --el-10-gf: var(--el-7-gf);
+        --el-11-gf: var(--el-5-gf);
+        --el-12-gf: var(--el-4-gf);
+        --el-13-gf: var(--el-12-gf);
+        --el-14-gf: var(--el-2-gf);
+        --el-15-gf: var(--el-1-gf);
+        --el-16-gf: var(--el-15-gf);
+    }
+
+    .el-1 {
+        top: var(--el-1-top);
+        left: var(--el-1-left);
+        --initial-translate-y: var(--el-1-start-y);
+        --initial-translate-x: var(--el-1-start-x);
+        --initial-rotate: var(--el-1-rotate);
+        --el-gf: var(--el-1-gf);
+    }
+    
+    .el-2 {
+        top: var(--el-2-top);
+        left: var(--el-2-left);
+        --initial-translate-y: var(--el-2-start-y);
+        --initial-translate-x: var(--el-2-start-x);
+        --initial-rotate: var(--el-2-rotate);
+        --el-gf: var(--el-2-gf);
+    }
+    
+    .el-3 {
+        top: var(--el-3-top);
+        right: var(--el-3-right);
+        --initial-translate-y: var(--el-3-start-y);
+        --initial-translate-x: var(--el-3-start-x);
+        --initial-rotate: var(--el-3-rotate);
+        --el-gf: var(--el-3-gf);
+    }
+    
+    .el-4 {
+        top: var(--el-4-top);
+        left: var(--el-4-left);
+        --initial-translate-y: var(--el-4-start-y);
+        --initial-translate-x: var(--el-4-start-x);
+        --initial-rotate: var(--el-4-rotate);
+        --el-gf: var(--el-4-gf);
+    }
+    
+    .el-5 {
+        top: var(--el-5-top);
+        left: var(--el-5-left);
+        --initial-translate-y: var(--el-5-start-y);
+        --initial-translate-x: var(--el-5-start-x);
+        --initial-rotate: var(--el-5-rotate);
+        --el-gf: var(--el-5-gf);
+    }
+    
+    .el-6 {
+        top: var(--el-6-top);
+        right: var(--el-6-right);
+        --initial-translate-y: var(--el-6-start-y);
+        --initial-translate-x: var(--el-6-start-x);
+        --initial-rotate: var(--el-6-rotate);
+        --el-gf: var(--el-6-gf);
+    }
+    
+    .el-7 {
+        top: var(--el-7-top);
+        left: var(--el-7-left);
+        --initial-translate-y: var(--el-7-start-y);
+        --initial-translate-x: var(--el-7-start-x);
+        --initial-rotate: var(--el-7-rotate);
+        --el-gf: var(--el-7-gf);
+    }
+    
+    .el-8 {
+        top: var(--el-8-top);
+        right: var(--el-8-right);
+        --initial-translate-y: var(--el-8-start-y);
+        --initial-translate-x: var(--el-8-start-x);
+        --initial-rotate: var(--el-8-rotate);
+        --el-gf: var(--el-8-gf);
+    }
+    
+    .el-9 {
+        bottom: var(--el-9-bottom);
+        left: var(--el-9-left);
+        --initial-translate-y: var(--el-9-start-y);
+        --initial-translate-x: var(--el-9-start-x);
+        --initial-rotate: var(--el-9-rotate);
+        --el-gf: var(--el-9-gf);
+    }
+    
+    .el-10 {
+        bottom: var(--el-10-bottom);
+        right: var(--el-10-right);
+        --initial-translate-y: var(--el-10-start-y);
+        --initial-translate-x: var(--el-10-start-x);
+        --initial-rotate: var(--el-10-rotate);
+        --el-gf: var(--el-10-gf);
+    }
+    
+    .el-11 {
+        bottom: var(--el-11-bottom);
+        left: var(--el-11-left);
+        --initial-translate-y: var(--el-11-start-y);
+        --initial-translate-x: var(--el-11-start-x);
+        --initial-rotate: var(--el-11-rotate);
+        --el-gf: var(--el-11-gf);
+    }
+    
+    .el-12 {
+        bottom: var(--el-12-bottom);
+        left: var(--el-12-left);
+        --initial-translate-y: var(--el-12-start-y);
+        --initial-translate-x: var(--el-12-start-x);
+        --initial-rotate: var(--el-12-rotate);
+        --el-gf: var(--el-12-gf);
+    }
+    
+    .el-13 {
+        bottom: var(--el-13-bottom);
+        right: var(--el-13-right);
+        --initial-translate-y: var(--el-13-start-y);
+        --initial-translate-x: var(--el-13-start-x);
+        --initial-rotate: var(--el-13-rotate);
+        --el-gf: var(--el-13-gf);
+    }
+    
+    .el-14 {
+        bottom: var(--el-14-bottom);
+        left: var(--el-14-left);
+        --initial-translate-y: var(--el-14-start-y);
+        --initial-translate-x: var(--el-14-start-x);
+        --initial-rotate: var(--el-14-rotate);
+        --el-gf: var(--el-14-gf);
+    }
+    
+    .el-15 {
+        bottom: var(--el-15-bottom);
+        left: var(--el-15-left);
+        --initial-translate-y: var(--el-15-start-y);
+        --initial-translate-x: var(--el-15-start-x);
+        --initial-rotate: var(--el-15-rotate);
+        --el-gf: var(--el-15-gf);
+    }
+    
+    .el-16 {
+        bottom: var(--el-16-bottom);
+        right: var(--el-16-right);
+        --initial-translate-y: var(--el-16-start-y);
+        --initial-translate-x: var(--el-16-start-x);
+        --initial-rotate: var(--el-16-rotate);
+        --el-gf: var(--el-16-gf);
+    }
 }
 
-.el-3 {
-    top: var(--el-3-top);
-    left: var(--el-3-left);
-    --initial-translate-y: var(--el-3-start-y);
-    --initial-translate-x: var(--el-3-start-x);
-    --initial-rotate: var(--el-3-rotate);
-    --el-gf: var(--el-3-gf);
-}
+@media screen and (max-width: 767px) {
+    :root {
+        --hexagon-height: 12vh;
+        --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
+        --hexagon-gap: calc(var(--hexagon-width) / 7);
+        --hexagon-shift: calc((var(--hexagon-width)) + var(--hexagon-gap));
+        --text-width: 40%;
+        --font-size: 1rem;
+        --hex-max-height: 33vw;
+        --el-1-top: 3vh;
+        --el-1-left: 5vw;
+        --el-2-top: 10vh;
+        --el-2-left: calc(50vw - ((var(--hexagon-width) * var(--el-2-gf)) / 2));
+        --el-3-top: var(--el-1-top);
+        --el-3-right: var(--el-1-left);
+        --el-4-top: 22vh;
+        --el-4-left: 15vw;
+        --el-5-top: 25vh;
+        --el-5-left: calc(50vw - ((var(--hexagon-width) * var(--el-5-gf)) / 2));
+        --el-6-top: var(--el-4-top);
+        --el-6-right: var(--el-4-left);
+        --el-7-top: 35vh;
+        --el-7-left: -2vw;
+        --el-8-top: var(--el-7-top);
+        --el-8-right: var(--el-7-left);
+        --el-9-bottom: var(--el-7-top);
+        --el-9-left: var(--el-7-left);
+        --el-10-bottom: var(--el-9-bottom);
+        --el-10-right: var(--el-9-left);
+        --el-11-bottom: var(--el-5-top);
+        --el-11-left: var(--el-5-left);
+        --el-12-bottom: var(--el-4-top);
+        --el-12-left: var(--el-4-left);
+        --el-13-bottom: var(--el-12-bottom);
+        --el-13-right: var(--el-12-left);
+        --el-14-bottom: var(--el-2-top);
+        --el-14-left: var(--el-2-left);
+        --el-15-bottom: var(--el-1-top);
+        --el-15-left: var(--el-1-left);
+        --el-16-bottom: var(--el-3-top);
+        --el-16-right: var(--el-3-right);
+        
+        --el-1-start-y: -20vh;
+        --el-2-start-y: -30vh;
+        --el-3-start-y: var(--el-1-start-y);
+        --el-4-start-y: -20vh;
+        --el-5-start-y: -20vh;
+        --el-6-start-y: var(--el-5-start-y);
+        --el-7-start-y: 0vh;
+        --el-8-start-y: var(--el-7-start-y);
+        --el-9-start-y: 0vh;
+        --el-10-start-y: var(--el-9-start-y);
+        --el-11-start-y: 20vh;
+        --el-12-start-y: 20vh;
+        --el-13-start-y: var(--el-12-start-y);
+        --el-14-start-y: 50vh;
+        --el-15-start-y: 20vh;
+        --el-16-start-y: var(--el-15-start-y);
+        
+        --el-1-start-x: -30vw;
+        --el-2-start-x: 0vw;
+        --el-3-start-x: 30vw;
+        --el-4-start-x: -45vw;
+        --el-5-start-x: 0vw;
+        --el-6-start-x: 45vw;
+        --el-7-start-x: -20vw;
+        --el-8-start-x: 20vw;
+        --el-9-start-x: -20vw;
+        --el-10-start-x: 20vw;
+        --el-11-start-x: 0vw;
+        --el-12-start-x: -45vw;
+        --el-13-start-x: 45vw;
+        --el-14-start-x: 0vw;
+        --el-15-start-x: -30vw;
+        --el-16-start-x: 30vw;
+        
+        --el-1-rotate: -60deg;
+        --el-2-rotate: 0deg;
+        --el-3-rotate: 60deg;
+        --el-4-rotate: -30deg;
+        --el-5-rotate: 0deg;
+        --el-6-rotate: 30deg;
+        --el-7-rotate: -30deg;
+        --el-8-rotate: 30deg;
+        --el-9-rotate: 30deg;
+        --el-10-rotate: -30deg;
+        --el-11-rotate: 0deg;
+        --el-12-rotate: 30deg;
+        --el-13-rotate: -30deg;
+        --el-14-rotate: -30deg;
+        --el-15-rotate: -60deg;
+        --el-16-rotate: 60deg;
+        
+        --el-1-gf: 1.3;
+        --el-2-gf: 0.68;
+        --el-3-gf: var(--el-1-gf);
+        --el-4-gf: 0.68;
+        --el-5-gf: 1;
+        --el-6-gf: var(--el-4-gf);
+        --el-7-gf: 1;
+        --el-8-gf: var(--el-7-gf);
+        --el-9-gf: var(--el-7-gf);
+        --el-10-gf: var(--el-7-gf);
+        --el-11-gf: var(--el-5-gf);
+        --el-12-gf: var(--el-4-gf);
+        --el-13-gf: var(--el-12-gf);
+        --el-14-gf: var(--el-2-gf);
+        --el-15-gf: var(--el-1-gf);
+        --el-16-gf: var(--el-15-gf);
+    }
 
-.el-4 {
-    top: var(--el-4-top);
-    right: var(--el-4-right);
-    --initial-translate-y: var(--el-4-start-y);
-    --initial-translate-x: var(--el-4-start-x);
-    --initial-rotate: var(--el-4-rotate);
-    --el-gf: var(--el-4-gf);
-}
-
-.el-5 {
-    top: var(--el-5-top);
-    right: var(--el-5-right);
-    --initial-translate-y: var(--el-5-start-y);
-    --initial-translate-x: var(--el-5-start-x);
-    --initial-rotate: var(--el-5-rotate);
-    --el-gf: var(--el-5-gf);
-}
-
-.el-6 {
-    top: var(--el-6-top);
-    right: var(--el-6-right);
-    --initial-translate-y: var(--el-6-start-y);
-    --initial-translate-x: var(--el-6-start-x);
-    --initial-rotate: var(--el-6-rotate);
-    --el-gf: var(--el-6-gf);
-}
-
-.el-7 {
-    top: var(--el-7-top);
-    right: var(--el-7-right);
-    --initial-translate-y: var(--el-7-start-y);
-    --initial-translate-x: var(--el-7-start-x);
-    --initial-rotate: var(--el-7-rotate);
-    --el-gf: var(--el-7-gf);
-}
-
-.el-8 {
-    bottom: var(--el-8-bottom);
-    right: var(--el-8-right);
-    --initial-translate-y: var(--el-8-start-y);
-    --initial-translate-x: var(--el-8-start-x);
-    --initial-rotate: var(--el-8-rotate);
-    --el-gf: var(--el-8-gf);
-}
-
-.el-9 {
-    bottom: var(--el-9-bottom);
-    right: var(--el-9-right);
-    --initial-translate-y: var(--el-9-start-y);
-    --initial-translate-x: var(--el-9-start-x);
-    --initial-rotate: var(--el-9-rotate);
-    --el-gf: var(--el-9-gf);
-}
-
-.el-10 {
-    bottom: var(--el-10-bottom);
-    right: var(--el-10-right);
-    --initial-translate-y: var(--el-10-start-y);
-    --initial-translate-x: var(--el-10-start-x);
-    --initial-rotate: var(--el-10-rotate);
-    --el-gf: var(--el-10-gf);
-}
-
-.el-11 {
-    bottom: var(--el-11-bottom);
-    right: var(--el-11-right);
-    --initial-translate-y: var(--el-11-start-y);
-    --initial-translate-x: var(--el-11-start-x);
-    --initial-rotate: var(--el-11-rotate);
-    --el-gf: var(--el-11-gf);
-}
-
-.el-12 {
-    bottom: var(--el-12-bottom);
-    left: var(--el-12-left);
-    --initial-translate-y: var(--el-12-start-y);
-    --initial-translate-x: var(--el-12-start-x);
-    --initial-rotate: var(--el-12-rotate);
-    --el-gf: var(--el-12-gf);
-}
-
-.el-13 {
-    bottom: var(--el-13-bottom);
-    left: var(--el-13-left);
-    --initial-translate-y: var(--el-13-start-y);
-    --initial-translate-x: var(--el-13-start-x);
-    --initial-rotate: var(--el-13-rotate);
-    --el-gf: var(--el-13-gf);
-}
-
-.el-14 {
-    bottom: var(--el-14-bottom);
-    left: var(--el-14-left);
-    --initial-translate-y: var(--el-14-start-y);
-    --initial-translate-x: var(--el-14-start-x);
-    --initial-rotate: var(--el-14-rotate);
-    --el-gf: var(--el-14-gf);
-}
-
-.el-15 {
-    bottom: var(--el-15-bottom);
-    left: var(--el-15-left);
-    --initial-translate-y: var(--el-15-start-y);
-    --initial-translate-x: var(--el-15-start-x);
-    --initial-rotate: var(--el-15-rotate);
-    --el-gf: var(--el-15-gf);
-}
-
-.el-16 {
-    bottom: var(--el-16-bottom);
-    left: var(--el-16-left);
-    --initial-translate-y: var(--el-16-start-y);
-    --initial-translate-x: var(--el-16-start-x);
-    --initial-rotate: var(--el-16-rotate);
-    --el-gf: var(--el-16-gf);
+    .el-1 {
+        top: var(--el-1-top);
+        left: var(--el-1-left);
+        --initial-translate-y: var(--el-1-start-y);
+        --initial-translate-x: var(--el-1-start-x);
+        --initial-rotate: var(--el-1-rotate);
+        --el-gf: var(--el-1-gf);
+    }
+    
+    .el-2 {
+        top: var(--el-2-top);
+        left: var(--el-2-left);
+        --initial-translate-y: var(--el-2-start-y);
+        --initial-translate-x: var(--el-2-start-x);
+        --initial-rotate: var(--el-2-rotate);
+        --el-gf: var(--el-2-gf);
+    }
+    
+    .el-3 {
+        top: var(--el-3-top);
+        right: var(--el-3-right);
+        --initial-translate-y: var(--el-3-start-y);
+        --initial-translate-x: var(--el-3-start-x);
+        --initial-rotate: var(--el-3-rotate);
+        --el-gf: var(--el-3-gf);
+    }
+    
+    .el-4 {
+        top: var(--el-4-top);
+        left: var(--el-4-left);
+        --initial-translate-y: var(--el-4-start-y);
+        --initial-translate-x: var(--el-4-start-x);
+        --initial-rotate: var(--el-4-rotate);
+        --el-gf: var(--el-4-gf);
+    }
+    
+    .el-5 {
+        top: var(--el-5-top);
+        left: var(--el-5-left);
+        --initial-translate-y: var(--el-5-start-y);
+        --initial-translate-x: var(--el-5-start-x);
+        --initial-rotate: var(--el-5-rotate);
+        --el-gf: var(--el-5-gf);
+    }
+    
+    .el-6 {
+        top: var(--el-6-top);
+        right: var(--el-6-right);
+        --initial-translate-y: var(--el-6-start-y);
+        --initial-translate-x: var(--el-6-start-x);
+        --initial-rotate: var(--el-6-rotate);
+        --el-gf: var(--el-6-gf);
+    }
+    
+    .el-7 {
+        top: var(--el-7-top);
+        left: var(--el-7-left);
+        --initial-translate-y: var(--el-7-start-y);
+        --initial-translate-x: var(--el-7-start-x);
+        --initial-rotate: var(--el-7-rotate);
+        --el-gf: var(--el-7-gf);
+    }
+    
+    .el-8 {
+        top: var(--el-8-top);
+        right: var(--el-8-right);
+        --initial-translate-y: var(--el-8-start-y);
+        --initial-translate-x: var(--el-8-start-x);
+        --initial-rotate: var(--el-8-rotate);
+        --el-gf: var(--el-8-gf);
+    }
+    
+    .el-9 {
+        bottom: var(--el-9-bottom);
+        left: var(--el-9-left);
+        --initial-translate-y: var(--el-9-start-y);
+        --initial-translate-x: var(--el-9-start-x);
+        --initial-rotate: var(--el-9-rotate);
+        --el-gf: var(--el-9-gf);
+    }
+    
+    .el-10 {
+        bottom: var(--el-10-bottom);
+        right: var(--el-10-right);
+        --initial-translate-y: var(--el-10-start-y);
+        --initial-translate-x: var(--el-10-start-x);
+        --initial-rotate: var(--el-10-rotate);
+        --el-gf: var(--el-10-gf);
+    }
+    
+    .el-11 {
+        bottom: var(--el-11-bottom);
+        left: var(--el-11-left);
+        --initial-translate-y: var(--el-11-start-y);
+        --initial-translate-x: var(--el-11-start-x);
+        --initial-rotate: var(--el-11-rotate);
+        --el-gf: var(--el-11-gf);
+    }
+    
+    .el-12 {
+        bottom: var(--el-12-bottom);
+        left: var(--el-12-left);
+        --initial-translate-y: var(--el-12-start-y);
+        --initial-translate-x: var(--el-12-start-x);
+        --initial-rotate: var(--el-12-rotate);
+        --el-gf: var(--el-12-gf);
+    }
+    
+    .el-13 {
+        bottom: var(--el-13-bottom);
+        right: var(--el-13-right);
+        --initial-translate-y: var(--el-13-start-y);
+        --initial-translate-x: var(--el-13-start-x);
+        --initial-rotate: var(--el-13-rotate);
+        --el-gf: var(--el-13-gf);
+    }
+    
+    .el-14 {
+        bottom: var(--el-14-bottom);
+        left: var(--el-14-left);
+        --initial-translate-y: var(--el-14-start-y);
+        --initial-translate-x: var(--el-14-start-x);
+        --initial-rotate: var(--el-14-rotate);
+        --el-gf: var(--el-14-gf);
+    }
+    
+    .el-15 {
+        bottom: var(--el-15-bottom);
+        left: var(--el-15-left);
+        --initial-translate-y: var(--el-15-start-y);
+        --initial-translate-x: var(--el-15-start-x);
+        --initial-rotate: var(--el-15-rotate);
+        --el-gf: var(--el-15-gf);
+    }
+    
+    .el-16 {
+        bottom: var(--el-16-bottom);
+        right: var(--el-16-right);
+        --initial-translate-y: var(--el-16-start-y);
+        --initial-translate-x: var(--el-16-start-x);
+        --initial-rotate: var(--el-16-rotate);
+        --el-gf: var(--el-16-gf);
+    }
 }
 
 .block-container {
@@ -292,7 +1063,7 @@ body {
 
 .hexagon, .img-containing-div {
     height: calc(var(--hexagon-height) * var(--el-gf)); /* Adjusted height with growth factor */
-    max-height: 20vw;
+    max-height: var(--hex-max-height);
     width: calc(var(--hexagon-width) * var(--el-gf));
     display: flex;
     justify-content: center;
@@ -345,7 +1116,7 @@ body {
     z-index: 10;
     height: fit-content;
     width: var(--text-width);
-    max-width: 950px;
+    max-width: 750px;
 }
 
 .centered > h4 {
@@ -354,6 +1125,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: var(--font-size);
+    margin: auto;
     margin-bottom: 0;
 }
 
