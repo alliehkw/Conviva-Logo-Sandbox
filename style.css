@@ -25,11 +25,11 @@ body {
     align-items: center;
 }
 
-.off-canvas-wrapper {
-    overflow: initial !important;
-}
-
 @media screen and (min-width: 1281px) {
+    /* .centered-container {
+        background-color: pink;
+    } */
+
     :root {
         --hexagon-height: 25vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
@@ -139,6 +139,13 @@ body {
         --el-15-gf: 0.68;
         --el-16-gf: 1.23;
     } 
+
+    @media screen and (max-height: 600px) {
+        :root {
+            --text-width: 60%;
+            --font-size: 1rem;
+        }
+    }
 
     .el-1 {
         top: var(--el-1-top);
@@ -286,6 +293,10 @@ body {
 }
 
 @media screen and (max-width: 1280px) {
+    /* .centered-container {
+        background-color: lightyellow;
+    } */
+
     :root {
         --hexagon-height: 18vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
@@ -394,6 +405,13 @@ body {
         --el-14-gf: var(--el-2-gf);
         --el-15-gf: var(--el-1-gf);
         --el-16-gf: var(--el-15-gf);
+    }
+
+    @media screen and (max-height: 600px) {
+        :root {
+            --text-width: 60%;
+            --font-size: 1rem;
+        }
     }
 
     .el-1 {
@@ -542,6 +560,10 @@ body {
 }
 
 @media screen and (max-width: 1080px) {
+    /* .centered-container {
+        background-color: lightgreen;
+    } */
+
     :root {
         --hexagon-height: 18vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
@@ -652,6 +674,12 @@ body {
         --el-16-gf: var(--el-15-gf);
     }
 
+    @media screen and (max-height: 600px) {
+        :root {
+            --text-width: 60%;
+            --font-size: 1rem;
+        }
+    }
     .el-1 {
         top: var(--el-1-top);
         left: var(--el-1-left);
@@ -798,6 +826,10 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+    /* .centered-container {
+        background-color: lightblue;
+    } */
+
     :root {
         --hexagon-height: 12vh;
         --hexagon-width: calc((var(--hexagon-height) * 209.354) / 238.826);
@@ -908,6 +940,12 @@ body {
         --el-16-gf: var(--el-15-gf);
     }
 
+    @media screen and (max-height: 600px) {
+        :root {
+            --text-width: 60%;
+            --font-size: 1rem;
+        }
+    }
     .el-1 {
         top: var(--el-1-top);
         left: var(--el-1-left);
